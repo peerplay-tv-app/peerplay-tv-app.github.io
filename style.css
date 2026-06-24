@@ -1,0 +1,413 @@
+/* ====================================================================================
+   🎨 БЛОК 1: ОБНУЛЕННЯ ТА БАЗОВІ СТИЛІ САЙТУ
+   ==================================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #0c0d14; 
+    color: #f5f6f9;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.accent-color {
+    color: #ffd600; 
+}
+
+/* ====================================================================================
+   🍔 БЛОК 2: ШАПКА САЙТУ ТА ЕЛЕМЕНТИ УПРАВЛІННЯ ПРОФІЛЕМ
+   ==================================================================================== */
+.main-header {
+    background-color: rgba(12, 13, 20, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.header-right-side {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.auth-trigger-btn {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.auth-trigger-btn:hover {
+    background-color: rgba(255, 214, 0, 0.1);
+    border-color: #ffd600;
+    color: #ffd600;
+}
+
+.download-btn {
+    background-color: #ffd600;
+    color: #000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 214, 0, 0.3);
+}
+
+.download-btn:hover {
+    transform: scale(1.03);
+    background-color: #ffe040;
+}
+
+/* ====================================================================================
+   🚀 БЛОК 3: ГОЛОВНИЙ БАНЕР (HERO SECTION) ТА ПЛАШКИ
+   ==================================================================================== */
+.hero {
+    padding: 60px 0 40px 0;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(30, 33, 50, 0.6) 0%, rgba(12, 13, 20, 1) 70%);
+}
+
+.hero h1 {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: #b3b7c9;
+    max-width: 800px;
+    margin: 0 auto 35px auto;
+}
+
+.features-badges {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge .material-icons {
+    font-size: 18px;
+    color: #ffd600;
+}
+
+/* ====================================================================================
+   🎛️ БЛОК 4: СТИЛІ СУЧАСНОЇ СТРОКИ ПОШУКУ, ТАБІВ ТА ФІЛЬТРІВ (З РОКАМИ)
+   ==================================================================================== */
+.filter-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: #090a0f;
+}
+
+.filter-section .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (min-width: 900px) {
+    .filter-section .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.category-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #b3b7c9;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+    background-color: #ffd600;
+    color: #000;
+    border-color: #ffd600;
+    box-shadow: 0 4px 12px rgba(255, 214, 0, 0.2);
+}
+
+.filter-controls-wrap {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+@media (min-width: 900px) {
+    .filter-controls-wrap {
+        width: auto;
+        justify-content: flex-end;
+    }
+}
+
+.control-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-box label {
+    font-weight: 600;
+    color: #7e8494;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.control-box select {
+    background-color: #161822;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.control-box select:focus { border-color: #ffd600; }
+
+.search-wrap {
+    display: flex;
+    align-items: center;
+    background-color: #161822;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    flex: 1;
+    min-width: 240px;
+    transition: border-color 0.2s;
+}
+
+.search-wrap:focus-within { border-color: #ffd600; }
+.search-wrap input { background: transparent; border: none; padding: 11px 15px; color: #fff; font-size: 14px; width: 100%; outline: none; }
+.search-wrap input::placeholder { color: #535763; }
+
+.search-btn-click {
+    background: transparent; border: none; color: #7e8494;
+    padding: 0 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.search-wrap:focus-within .search-btn-click { color: #ffd600; }
+
+/* ====================================================================================
+   🎬 БЛОК 5: КАТАЛОГ СІТКА ФІЛЬМІВ ТА КАРТКИ
+   ==================================================================================== */
+.catalog-section { padding: 40px 0; }
+.section-title { font-size: 26px; font-weight: 700; margin-bottom: 30px; position: relative; padding-left: 15px; }
+.section-title::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 4px; background-color: #ffd600; border-radius: 2px; }
+
+.movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 25px; }
+.movie-card { background-color: rgba(255, 255, 255, 0.02); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.04); }
+.movie-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5); border-color: rgba(255, 214, 0, 0.4); }
+
+.poster-wrap { position: relative; aspect-ratio: 2 / 3; background-color: #1a1c24; }
+.poster-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+.rating-badge { position: absolute; top: 10px; left: 10px; background-color: rgba(0, 0, 0, 0.8); color: #ffd600; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; border: 1px solid rgba(255, 214, 0, 0.3); }
+.movie-info { padding: 12px; }
+.movie-title { font-size: 15px; font-weight: 600; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.movie-meta { font-size: 12px; color: #7e8494; }
+
+.load-more-wrap { text-align: center; margin-top: 40px; }
+.load-more-btn { background-color: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); color: #fff; padding: 12px 35px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.load-more-btn:hover { background-color: rgba(255, 214, 0, 0.1); border-color: #ffd600; color: #ffd600; }
+
+.loader, .error-msg { grid-column: 1 / -1; text-align: center; padding: 50px 0; font-size: 16px; color: #7e8494; }
+.error-msg { color: #ff6b6b; }
+
+/* ====================================================================================
+   🍿 БЛОК 6: СТИЛІ МОДАЛЬНИХ ВІКОН ТА ДЕТАЛЕЙ КОНТЕНТУ (ЖАНРИ ТА АКТОРИ)
+   ==================================================================================== */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 1000; display: flex; justify-content: center; align-items: flex-start; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 40px 20px; }
+.modal.active { opacity: 1; pointer-events: auto; }
+
+.modal-content { background-color: #12141c; width: 100%; max-width: 950px; border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.8); transform: translateY(-20px); transition: transform 0.3s ease; }
+.modal.active .modal-content { transform: translateY(0); }
+
+.close-modal-btn { position: absolute; top: 20px; right: 20px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; z-index: 10; }
+.close-modal-btn:hover { background: #ffd600; color: #000; transform: scale(1.05); }
+
+.modal-hero { height: 300px; background-size: cover; background-position: center top; position: relative; display: flex; align-items: flex-end; }
+.modal-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, #12141c 0%, rgba(18, 20, 28, 0.3) 70%, rgba(18, 20, 28, 0.6) 100%); }
+.modal-hero-meta { position: relative; z-index: 2; padding: 30px; width: 100%; }
+#modal-title { font-size: 32px; font-weight: 900; margin-top: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+
+.modal-body { padding: 30px; }
+.action-bar { display: flex; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 20px; }
+.action-action-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 10px 22px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px; transition: all 0.2s ease; }
+.action-action-btn:hover { background-color: rgba(255,255,255,0.08); }
+
+.share-wrapper { position: relative; }
+.share-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background-color: #1a1d29; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 8px; display: flex; flex-direction: column; gap: 4px; min-width: 195px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transform: translateY(-10px); transition: all 0.2s ease; z-index: 50; }
+.share-dropdown.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+.share-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; color: #e2e4eb; text-decoration: none; font-size: 14px; font-weight: 600; border-radius: 6px; background: transparent; border: none; width: 100%; cursor: pointer; transition: background 0.15s; }
+.share-item:hover { background-color: rgba(255,255,255,0.05); }
+.share-item.tg:hover { color: #24A1DE; background-color: rgba(36, 161, 222, 0.08); }
+.share-item.viber:hover { color: #734cde; background-color: rgba(115, 76, 222, 0.08); }
+.share-item.wa:hover { color: #25D366; background-color: rgba(37, 211, 102, 0.08); }
+.share-item.fb:hover { color: #1877F2; background-color: rgba(24, 119, 242, 0.08); }
+.share-item.copy-link { border-top: 1px solid rgba(255,255,255,0.05); border-radius: 0 0 6px 6px; margin-top: 4px; color: #7e8494; }
+
+.share-icon-tg, .share-icon-viber, .share-icon-wa, .share-icon-fb { width: 18px; height: 18px; display: inline-block; background-size: contain; background-repeat: no-repeat; }
+.share-icon-tg { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2324A1DE'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.7-2.48 2.75-2.7.01-.03.01-.14-.06-.2-.07-.06-.17-.04-.25-.02-.11.02-1.78 1.13-5.05 3.34-.48.33-.91.49-1.3.48-.43-.01-1.26-.24-1.88-.45-.76-.25-1.37-.39-1.32-.83.03-.23.35-.46.96-.71 3.76-1.63 6.27-2.71 7.53-3.25 3.58-1.51 4.32-1.77 4.81-1.78.11 0 .35.03.5.15.13.1.17.23.18.33 0 .07.01.23 0 .37z'/%3E%3C/svg%3E"); }
+.share-icon-viber { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23734cde'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.11 14.12c-.52.52-1.25.75-2.22.75-1.92 0-3.83-.87-5.18-2.22s-2.22-3.26-2.22-5.18c0-.97.23-1.7.75-2.22.52-.52 1.22-.64 1.83-.64.44 0 .84.21 1.05.58l1.08 1.89c.22.38.15.87-.17 1.18l-.51.51c.32.55.77 1.06 1.3 1.58.52.52 1.03.97 1.58 1.3l.51-.51c.31-.32.8-.39 1.18-.17l1.89 1.08c.37.21.58.61.58 1.05 0 .61-.12 1.31-.64 1.83z'/%3E%3C/svg%3E"); }
+.share-icon-wa { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2325D366'%3E%3Cpath d='M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.346c1.651.983 3.275 1.488 4.95 1.492 5.432.003 9.85-4.411 9.854-9.842.002-2.63-1.023-5.101-2.885-6.964C16.644 2.477 14.17 1.451 11.54 1.45 6.11 1.45 1.693 5.861 1.699 11.29c-.001 1.758.465 3.411 1.348 4.887l-.991 3.616 3.712-.973zm13.132-7.5c-.29-.145-1.716-.847-1.982-.944-.266-.096-.46-.145-.652.145-.193.29-.747.944-.916 1.137-.169.194-.338.218-.627.072-2.316-1.165-3.412-1.745-4.805-4.133-.11-.19-.239-.333-.356-.508-.186-.277-.043-.427.094-.564.124-.124.276-.323.415-.484.053-.062.109-.126.162-.187.116-.134.195-.23.275-.386.08-.155.04-.29-.02-.435-.06-.145-.653-1.572-.894-2.152-.234-.564-.471-.488-.653-.497-.168-.008-.362-.01-.555-.01-.193 0-.507.072-.772.362-.266.29-1.014.991-1.014 2.416 0 1.425 1.038 2.802 1.182 2.996.145.194 2.043 3.12 4.949 4.377.691.299 1.231.478 1.651.61.694.221 1.325.19 1.825.115.556-.085 1.716-.701 1.958-1.377.24-.677.24-1.256.17-1.377-.072-.121-.266-.194-.556-.34z'/%3E%3C/svg%3E"); }
+.share-icon-fb { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231877F2'%3E%3Cpath d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/%3E%3C/svg%3E"); }
+
+.modal-details-grid { display: grid; grid-template-columns: 220px 1fr; gap: 35px; margin-bottom: 40px; }
+.modal-poster-side img { width: 100%; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
+.modal-desc-side h3 { color: #ffd600; margin-bottom: 10px; font-size: 18px; }
+.modal-desc-side p { color: #b3b7c9; font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
+
+/* Динамічні мета-плашки всередині модалки */
+.expanded-meta-box { background-color: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; margin-bottom: 25px; display: flex; flex-direction: column; gap: 10px; }
+.meta-line { display: flex; font-size: 14px; line-height: 1.4; }
+.meta-label { font-weight: 700; color: #7e8494; min-width: 130px; display: inline-block; }
+.meta-value { color: #e2e4eb; }
+
+/* Кастомні плашки жанрів у модалці */
+.genre-tag { background-color: rgba(255, 214, 0, 0.1); color: #ffd600; border: 1px solid rgba(255, 214, 0, 0.2); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 6px; display: inline-block; }
+
+/* ЗІРОЧКИ ОЦІНКИ */
+.user-rating-section { margin-top: 20px; background-color: rgba(255, 255, 255, 0.02); padding: 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.04); }
+.user-rating-section h4 { font-size: 13px; color: #7e8494; margin-bottom: 5px; }
+.stars-container { display: flex; gap: 4px; margin-bottom: 4px; }
+.stars-container .star { font-size: 26px; color: #4a4d5c; cursor: pointer; transition: all 0.1s; }
+.stars-container .star:hover { transform: scale(1.2); }
+.stars-container .star.selected, .stars-container:hover .star { color: #ffd600; }
+.stars-container .star:hover ~ .star { color: #4a4d5c; }
+.rating-status { font-size: 11px; color: #535763; display: block; }
+
+/* YOUTUBE ТРЕЙЛЕР */
+.trailer-container { margin-top: 20px; display: none; }
+.trailer-container h3 { margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.video-responsive { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.video-responsive iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* ====================================================================================
+   💬 БЛОК 7: СЕКЦІЯ КОМЕНТАРІВ ТА ВІДГУКІВ
+   ==================================================================================== */
+.comments-section { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 30px; }
+.comments-section h3 { font-size: 20px; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.comments-section h3 .material-icons { color: #ffd600; }
+
+.comment-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+.comment-form input, .comment-form textarea { background-color: #1a1c26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px 16px; color: #fff; font-family: inherit; font-size: 15px; }
+.comment-form input:focus, .comment-form textarea:focus { outline: none; border-color: #ffd600; }
+
+.submit-comment-btn { align-self: flex-end; background-color: rgba(255, 214, 0, 0.1); border: 1px solid #ffd600; color: #ffd600; padding: 10px 24px; border-radius: 6px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s; }
+.submit-comment-btn:hover { background-color: #ffd600; color: #000; }
+
+.comments-list { display: flex; flex-direction: column; gap: 15px; }
+.comment-item { background-color: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04); padding: 15px; border-radius: 8px; }
+.comment-meta { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+.comment-author { font-weight: 700; color: #ffd600; }
+.comment-date { color: #535763; }
+.comment-text { color: #e2e4eb; font-size: 14px; }
+.no-comments { text-align: center; color: #535763; padding: 20px 0; font-style: italic; }
+
+/* ====================================================================================
+   📚 БЛОК 8: СТИЛІ НАТИВНОГО SEO FAQ БЛОКУ
+   ==================================================================================== */
+.seo-faq-section { background-color: #08090d; padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.03); }
+.faq-main-title { font-size: 28px; text-align: center; margin-bottom: 40px; font-weight: 800; }
+.faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.faq-item { background-color: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 12px; }
+.faq-item h3 { font-size: 17px; margin-bottom: 12px; color: #ffd600; line-height: 1.4; }
+.faq-item p { color: #a2a6b8; font-size: 14px; line-height: 1.6; }
+
+.main-footer { background-color: #06070a; padding: 30px 0; text-align: center; font-size: 13px; color: #535763; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+
+/* ====================================================================================
+   📱 БЛОК 9: АДАПТИВНІСТЬ ДЛЯ СМАРТФОНІВ (МЕДІА-ЗАПИТИ)
+   ==================================================================================== */
+@media (max-width: 768px) {
+    .modal-details-grid { grid-template-columns: 1fr; gap: 25px; }
+    .modal-poster-side { max-width: 200px; margin: 0 auto; }
+    .action-bar { justify-content: center; }
+    .modal-hero { height: 200px; }
+    #modal-title { font-size: 24px; }
+}
+
+@media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .hero-subtitle { font-size: 14px; }
+    .movie-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+    .header-flex { flex-direction: column; gap: 15px; text-align: center; }
+    .filter-section .container { flex-direction: column; align-items: stretch; }
+    .category-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .tab-btn { padding: 10px 8px; font-size: 14px; text-align: center; width: 100%; }
+    .filter-controls-wrap { flex-direction: column; align-items: stretch; gap: 12px; }
+    .control-box select, .search-wrap { width: 100%; }
+    .action-action-btn { flex: 1; justify-content: center; font-size: 12px; padding: 10px 10px; }
+    .faq-main-title { font-size: 22px; }
+    .share-dropdown { left: auto; right: 0; } 
+    .header-right-side { width: 100%; justify-content: space-between; }
+    .auth-trigger-btn, .download-btn { flex: 1; justify-content: center; font-size: 13px; }
+}

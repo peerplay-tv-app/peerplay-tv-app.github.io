@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Фільми онлайн в 4K, офіційні трейлери українською та оригінальною озвучкою безкоштовно — PeerPlay TV</title>
+    <meta name="description" content="Шукаєте де дивитися офіційні трейлери українською чи оригінальною мовою та фільми онлайн в 4K / Full HD якості? Завантажуйте безкоштовний застосунок PeerPlay TV для Android TV та дивіться кіноновинки 2026 року без реклами!">
+    <meta name="keywords" content="офіційний трейлер, трейлери українською, оригінальна озвучка, мова оригіналу, фільми в оригіналі англійською, дивитись трейлер онлайн, фільми онлайн, українська озвучка, 4к, full hd, безкоштовно, завантажити додаток, android tv, новинки кіно 2026 трейлери, peerplay tv, кіно українською, фільми 2026, серіали онлайн">
+    
+    <meta property="og:title" content="PeerPlay TV — Фільми онлайн в 4K з українською та оригінальною озвучкою">
+    <meta property="og:description" content="Завантажуйте найкращий медіа-плеєр для Android TV та дивіться кіно в один клік.">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-flex">
+            <div class="logo">
+                <span class="accent-color">Peer</span>Play TV
+            </div>
+            
+            <div class="header-right-side">
+                <button id="auth-header-btn" class="auth-trigger-btn" onclick="openAuthModal()">
+                    <span class="material-icons">account_circle</span>
+                    <span id="auth-btn-text">Увійти</span>
+                </button>
+
+                <!-- 🚀 ОНОВЛЕНЕ ПОСИЛАННЯ НА НОВИЙ ФАЙЛ APK -->
+                <a href="https://github.com/Chief-0107/PeerPlay-TV/releases/download/v1.4/peertv-app.apk" download class="download-btn">
+                    <span class="material-icons">download</span>
+                    <span>Завантажити APK</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <!-- 🚀 ПОВЕРНУТО СТАРИЙ ЗАГОЛОВОК ТА ТЕКСТ -->
+            <h1>Дивіться офіційні трейлери та фільми онлайн в <span class="accent-color">4K</span> з українською та оригінальною озвучкою</h1>
+            <p class="hero-subtitle">Сучасний медіа-плеєр для вашого Smart TV та Android пристроїв. Усі гарячі трейлери, висока якість Full HD 1080p, підтримка мови оригіналу, стабільна робота та абсолютна свобода без реклами.</p>
+            
+            <!-- 🚀 БЛОК З ІНФОРМАЦІЄЮ ПРО ПЛАТФОРМИ (ЗАЛИШЕНО) -->
+            <div style="margin-bottom: 25px; font-size: 14px; color: #ffd600; background: rgba(255, 214, 0, 0.05); border: 1px solid rgba(255, 214, 0, 0.2); padding: 12px 20px; border-radius: 8px; display: inline-block;">
+                <span class="material-icons" style="font-size: 18px; vertical-align: sub; margin-right: 6px;">info</span>
+                <b>Зверніть увагу:</b> Наразі застосунок доступний виключно для <u>Android TV та приставок</u>. Версії для Android-смартфонів та ПК (Windows) вже знаходяться в розробці!
+            </div>
+
+            <!-- 🚀 ПОВЕРНУТО СТАРІ ІКОНКИ-БЕЙДЖИ -->
+            <div class="features-badges">
+                <span class="badge"><span class="material-icons">movie</span> Офіційні трейлери</span>
+                <span class="badge"><span class="material-icons">high_quality</span> 4K Ultra HD</span>
+                <span class="badge"><span class="material-icons">g_translate</span> Українська & Оригінал</span>
+                <span class="badge"><span class="material-icons">money_off</span> 100% Безкоштовно</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="tab-btn active" onclick="switchCategory('movie')">Фільми</button>
+                <button class="tab-btn" onclick="switchCategory('tv')">Серіали</button>
+                <button class="tab-btn" onclick="switchCategory('cartoon')">Мультфільми</button>
+                <button class="tab-btn" onclick="switchCategory('animated_series')">Мультсеріали</button>
+            </div>
+
+            <div class="filter-controls-wrap">
+                <div class="control-box">
+                    <label for="genre-select">Жанр:</label>
+                    <select id="genre-select" onchange="switchGenre(this.value)">
+                        <option value="">Всі жанри</option>
+                        <option value="28">Бойовик</option>
+                        <option value="35">Комедія</option>
+                        <option value="18">Драма</option>
+                        <option value="878">Фантастика</option>
+                        <option value="27">Жахи</option>
+                        <option value="9648">Детектив</option>
+                        <option value="12">Пригоди</option>
+                    </select>
+                </div>
+
+                <div class="control-box">
+                    <label for="year-select">Рік:</label>
+                    <select id="year-select" onchange="switchYear(this.value)">
+                        <option value="">Всі роки</option>
+                        <option value="2026">2026 рік</option>
+                        <option value="2025">2025 рік</option>
+                        <option value="2024">2024 рік</option>
+                        <option value="2023">2023 рік</option>
+                        <option value="2022">2022 рік</option>
+                        <option value="2021">2021 рік</option>
+                        <option value="2020">2020 рік</option>
+                        <option value="2019">2019 рік</option>
+                        <option value="2018">2018 рік</option>
+                        <option value="2017">2017 рік</option>
+                        <option value="2016">2016 рік</option>
+                        <option value="2015">2015 рік</option>
+                        <option value="2014">2014 рік</option>
+                        <option value="2013">2013 рік</option>
+                        <option value="2012">2012 рік</option>
+                        <option value="2011">2011 рік</option>
+                        <option value="2010">2010 рік</option>
+                        <option value="2009">2009 рік</option>
+                        <option value="2008">2008 рік</option>
+                        <option value="2007">2007 рік</option>
+                        <option value="2006">2006 рік</option>
+                        <option value="2005">2005 рік</option>
+                        <option value="2004">2004 рік</option>
+                        <option value="2003">2003 рік</option>
+                        <option value="2002">2002 рік</option>
+                        <option value="2001">2001 рік</option>
+                        <option value="2000">2000 рік</option>
+                        <option value="1999">1999 рік</option>
+                        <option value="1998">1998 рік</option>
+                        <option value="1997">1997 рік</option>
+                        <option value="1996">1996 рік</option>
+                        <option value="1995">1995 рік</option>
+                        <option value="1994">1994 рік</option>
+                        <option value="1993">1993 рік</option>
+                        <option value="1992">1992 рік</option>
+                        <option value="1991">1991 рік</option>
+                        <option value="1990">1990 рік</option>
+                        <option value="1989">1989 рік</option>
+                        <option value="1988">1988 рік</option>
+                        <option value="1987">1987 рік</option>
+                        <option value="1986">1986 рік</option>
+                        <option value="1985">1985 рік</option>
+                        <option value="1984">1984 рік</option>
+                        <option value="1983">1983 рік</option>
+                        <option value="1982">1982 рік</option>
+                        <option value="1981">1981 рік</option>
+                        <option value="1980">1980 рік</option>
+                    </select>
+                </div>
+
+                <div class="control-box">
+                    <label for="sort-select">Сортування:</label>
+                    <select id="sort-select" onchange="switchSort(this.value)">
+                        <option value="popularity.desc">Популярні</option>
+                        <option value="release_date.desc">Новинки (за датою)</option>
+                        <option value="vote_average.desc">Найвищий рейтинг</option>
+                    </select>
+                </div>
+
+                <div class="search-wrap">
+                    <input type="text" id="search-input" placeholder="Пошук за назвою стрічки..." onkeyup="handleSearch(event)">
+                    <button class="search-btn-click" onclick="triggerSearch()">
+                        <span class="material-icons">search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="favorites-section" class="catalog-section" style="display: none; background-color: rgba(255,214,0,0.01); border-bottom: 1px solid rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="section-title" style="color: #ffd600;">Моя черга (Обране)</h2>
+            <div id="favorites-grid" class="movie-grid"></div>
+        </div>
+    </section>
+
+    <main class="catalog-section">
+        <div class="container">
+            <h2 class="section-title" id="catalog-title">Тренди кіно</h2>
+            <div id="movie-grid" class="movie-grid">
+                <div class="loader">Завантаження кінострічок...</div>
+            </div>
+            
+            <div class="load-more-wrap">
+                <button id="load-more-btn" class="load-more-btn" onclick="loadNextPage()">
+                    <span>Показати ще</span>
+                    <span class="material-icons">expand_more</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="movie-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeModal()">
+                <span class="material-icons">close</span>
+            </button>
+
+            <div id="modal-hero" class="modal-hero">
+                <div class="modal-hero-overlay"></div>
+                <div class="modal-hero-meta">
+                    <span id="modal-rating" class="rating-badge">0.0</span>
+                    <h2 id="modal-title">Назва фільму</h2>
+                    <p id="modal-year" class="movie-meta">2026</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="action-bar">
+                    <button id="fav-toggle-btn" class="action-action-btn fav-btn" onclick="toggleFavorite()">
+                        <span class="material-icons">bookmark_border</span> <span id="fav-btn-text">В обране</span>
+                    </button>
+                    
+                    <div class="share-wrapper">
+                        <button class="action-action-btn share-btn" onclick="toggleShareDropdown(event)">
+                            <span class="material-icons">share</span> Поділитись фільмом
+                        </button>
+                        <div id="share-dropdown" class="share-dropdown">
+                            <a id="share-tg" href="#" target="_blank" class="share-item tg">
+                                <span class="share-icon-tg"></span> Telegram
+                            </a>
+                            <a id="share-viber" href="#" target="_blank" class="share-item viber">
+                                <span class="share-icon-viber"></span> Viber
+                            </a>
+                            <a id="share-wa" href="#" target="_blank" class="share-item wa">
+                                <span class="share-icon-wa"></span> WhatsApp
+                            </a>
+                            <a id="share-fb" href="#" target="_blank" class="share-item fb">
+                                <span class="share-icon-fb"></span> Facebook
+                            </a>
+                            <button onclick="copyFallbackLink()" class="share-item copy-link">
+                                <span class="material-icons">content_copy</span> Копіювати текст
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-details-grid">
+                    <div class="modal-poster-side">
+                        <img id="modal-poster" src="" alt="Постер">
+                        
+                        <div class="user-rating-section">
+                            <h4>Ваша оцінка:</h4>
+                            <div class="stars-container" id="stars-rating">
+                                <span class="material-icons star" data-value="1">star_border</span>
+                                <span class="material-icons star" data-value="2">star_border</span>
+                                <span class="material-icons star" data-value="3">star_border</span>
+                                <span class="material-icons star" data-value="4">star_border</span>
+                                <span class="material-icons star" data-value="5">star_border</span>
+                            </div>
+                            <span id="rating-status" class="rating-status">Натисніть для голосування</span>
+                        </div>
+                    </div>
+                    <div class="modal-desc-side">
+                        <div class="expanded-meta-box">
+                            <div class="meta-line">
+                                <span class="meta-label">Жанри:</span>
+                                <span id="modal-genres-list" class="meta-value">Завантаження...</span>
+                            </div>
+                            <div class="meta-line">
+                                <span class="meta-label">У головних ролях:</span>
+                                <span id="modal-actors-list" class="meta-value">Завантаження...</span>
+                            </div>
+                        </div>
+
+                        <h3>Про що сюжет:</h3>
+                        <p id="modal-overview">Опис відсутній.</p>
+                        
+                        <div class="trailer-container">
+                            <h3><span class="material-icons">play_circle</span> Офіційний трейлер стрічки</h3>
+                            <div class="video-responsive">
+                                <iframe id="trailer-iframe" src="" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comments-section">
+                    <h3><span class="material-icons">forum</span> Обговорення глядачів</h3>
+                    <form id="comment-form" class="comment-form">
+                        <input type="text" id="comment-name" placeholder="Ваше ім'я" readonly required style="opacity: 0.6; background-color: #0c0d14;">
+                        <textarea id="comment-text" rows="3" placeholder="Залишіть свій відгук про фільм..." required></textarea>
+                        <button type="submit" class="submit-comment-btn">
+                            <span class="material-icons">send</span> Відправити коментар
+                        </button>
+                    </form>
+                    <div id="comments-list" class="comments-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="modal">
+        <div class="modal-content" style="max-width: 450px;">
+            <button class="close-modal-btn" onclick="closeAuthModal()">
+                <span class="material-icons">close</span>
+            </button>
+            
+            <div class="auth-modal-body" style="padding: 40px 30px; text-align: center;">
+                <span class="material-icons" style="font-size: 55px; color: #ffd600; margin-bottom: 15px;">lock_person</span>
+                <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Створення профілю</h2>
+                <p style="font-size: 14px; color: #7e8494; margin-bottom: 25px; line-height: 1.4;">Введіть унікальний нікнейм та пошту. Пароль не потрібен — пошта захистить ваш аккаунт від крадіжки імені.</p>
+                
+                <form id="auth-form" class="comment-form" style="text-align: left;">
+                    <label style="font-size: 13px; color: #7e8494; font-weight: 600; margin-left: 4px;">Унікальний нікнейм:</label>
+                    <input type="text" id="auth-username" placeholder="Наприклад: Ivan_Play" required pattern="^[a-zA-Z0-9_]{3,15}$" title="Тільки латиниця, цифри та підкреслення (3-15 символів)">
+                    
+                    <label style="font-size: 13px; color: #7e8494; font-weight: 600; margin-left: 4px; margin-top: 8px; display: block;">Ваш Email (для верифікації та захисту):</label>
+                    <input type="email" id="auth-email" placeholder="example@gmail.com" required>
+                    
+                    <button type="submit" class="submit-comment-btn" style="width: 100%; justify-content: center; margin-top: 15px; padding: 12px;">
+                        <span class="material-icons">verified_user</span> Зафіксувати аккаунт
+                    </button>
+                </form>
+                
+                <div id="auth-logout-block" style="display: none; margin-top: 10px;">
+                    <p style="color: #ffd600; font-weight: bold; margin-bottom: 15px;">Ви авторизовані як: <span id="current-user-display"></span></p>
+                    <button onclick="logoutUser()" class="action-action-btn" style="width: 100%; justify-content: center; border-color: #ff6b6b; color: #ff6b6b;">
+                        <span class="material-icons">logout</span> Вийти з профілю
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="seo-faq-section">
+        <div class="container">
+            <h2 class="faq-main-title">FAQ: Поширені запитання про PeerPlay TV</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>🍿 Як дивитися фільми онлайн в 4K та Full HD якості безкоштовно?</h3>
+                    <p>Для комфортного перегляду кіно без реклами рекомендуємо завантажити наш офіційний медіа-плеєр PeerPlay TV. Застосунок автоматично підбирає найкращую якість Full HD (1080p) або Ultra HD (4K) залежно від швидкості вашого інтернету.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>🤖 Як встановити додаток PeerPlay TV на пристрій?</h3>
+                    <!-- 🚀 ДОДАНО ТЕКСТ ПРО ПЛАТФОРМИ В FAQ -->
+                    <p>Скачайте інсталяційний APK файл безкоштовно з нашого сайту на звичайну флешку або скористайтеся додатком Downloader на вашому телевізорі. <b>Важливо:</b> зараз підтримується тільки Android TV та приставки. Застосунки для мобільних пристроїв на Android та комп'ютерів на Windows знаходяться в розробці та будуть випущені згодом.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>🇺🇦 Чи є на сайті фільми та серіали з українською та оригінальною озвучкою?</h3>
+                    <p>Так! Наш каталог за допомогою розумної індексації TMDb API збирає тренди тижня, популярні мультфільми та мультсеріали. Ви знайдете контент як з якісним українським перекладом (дубляжем), так і мовою оригіналу для поціновувачів оригінальної озвучки та автентичного звучання. Користувачі можуть залишати свої коментарі та виставляти оцінки стрічкам.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>🎥 Чи можна дивитися офіційні трейлери фільмів українською мовою?</h3>
+                    <p>Так! Наш портал за допомогою інтеграції TMDb API надає офіційні трейлери у високій якості до кожного фільму, мультфільму чи серіалу. Ви можете переглянути відео онлайн прямо в описі картки кінострічки перед тим, як запустити перегляд на телевізорі.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section" style="padding: 40px 0; background-color: #06070a; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.03);">
+        <div class="container">
+            <p style="font-size: 13px; color: #7e8494; margin-bottom: 8px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">Інформаційний партнер проєкту</p>
+            <p style="font-size: 20px; color: #01b4e4; font-weight: 700; letter-spacing: 1px; margin: 0 0 10px 0; display: inline-block;">The Movie Database (TMDb)</p>
+            <p style="font-size: 12px; color: #535763; max-width: 600px; margin: 10px auto 0 auto; line-height: 1.5; font-weight: 400;">Цей продукт використовує TMDb API, але не підтримується та не сертифікований сервісом TMDb.</p>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 PeerPlay TV. Усі права захищені. Матеріал надано для ознайомлення через відкрите API TMDb.</p>
+        </div>
+    </footer>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAwoesjgFsBUfpu1fVu3zrsDI4YvqcwBPo",
+            authDomain: "peerplaytv.firebaseapp.com",
+            projectId: "peerplaytv",
+            storageBucket: "peerplaytv.firebasestorage.app",
+            messagingSenderId: "38179408133",
+            appId: "1:38179408133:web:fb81b2ee67562129690f6c",
+            measurementId: "G-KMYNDLBLGC"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+
+    <script>
+        const API_KEY = 'd81559e3ee0e79ee39f56758f4897fff'; 
+        const MOVIE_GRID = document.getElementById('movie-grid');
+        const LOAD_MORE_BTN = document.getElementById('load-more-btn');
+        
+        const GENRE_MAP = {
+            28: "Бойовик", 12: "Пригоди", 16: "Мультфільм", 35: "Комедія", 
+            80: "Кримінал", 99: "Документальний", 18: "Драма", 10751: "Сімейний", 
+            14: "Фентезі", 36: "Історія", 27: "Жахи", 10402: "Музика", 
+            9648: "Детектив", 10749: "Мелодрама", 878: "Фантастика", 
+            10770: "Телефільм", 53: "Трилер", 10752: "Військовий", 37: "Вестерн",
+            10759: "Пригоди та Бойовики", 10762: "Дитячий", 10765: "Sci-Fi & Fantasy"
+        };
+
+        let currentCategory = 'movie'; 
+        let selectedGenre = '';
+        let selectedYear = ''; 
+        let currentSort = 'popularity.desc'; 
+        let searchQuery = ''; 
+        let currentPage = 1;
+        let currentMovieId = null;
+        let currentMovieData = null;
+        let currentUser = null; 
+
+        const MODAL = document.getElementById('movie-modal');
+        const MODAL_TITLE = document.getElementById('modal-title');
+        const MODAL_YEAR = document.getElementById('modal-year');
+        const MODAL_RATING = document.getElementById('modal-rating');
+        const MODAL_OVERVIEW = document.getElementById('modal-overview');
+        const MODAL_POSTER = document.getElementById('modal-poster');
+        const MODAL_HERO = document.getElementById('modal-hero');
+        const TRAILER_IFRAME = document.getElementById('trailer-iframe');
+        const COMMENT_FORM = document.getElementById('comment-form');
+        const COMMENT_NAME = document.getElementById('comment-name');
+        const COMMENT_TEXT = document.getElementById('comment-text');
+        const COMMENTS_LIST = document.getElementById('comments-list');
+        const STARS_CONTAINER = document.getElementById('stars-rating');
+        const RATING_STATUS = document.getElementById('rating-status');
+        const SHARE_DROPDOWN = document.getElementById('share-dropdown');
+        
+        const MODAL_GENRES_LIST = document.getElementById('modal-genres-list');
+        const MODAL_ACTORS_LIST = document.getElementById('modal-actors-list');
+
+        const AUTH_MODAL = document.getElementById('auth-modal');
+        const AUTH_FORM = document.getElementById('auth-form');
+        const AUTH_USERNAME = document.getElementById('auth-username');
+        const AUTH_EMAIL = document.getElementById('auth-email');
+        const AUTH_LOGOUT_BLOCK = document.getElementById('auth-logout-block');
+        const CURRENT_USER_DISPLAY = document.getElementById('current-user-display');
+        const AUTH_HEADER_BTN_TEXT = document.getElementById('auth-btn-text');
+
+        function checkUserSession() {
+            currentUser = localStorage.getItem('peerplay_username');
+            if (currentUser) {
+                AUTH_HEADER_BTN_TEXT.textContent = currentUser;
+                COMMENT_NAME.value = currentUser;
+                COMMENT_TEXT.placeholder = "Залишіть свій відгук про фільм...";
+                COMMENT_TEXT.disabled = false;
+                COMMENT_FORM.querySelector('.submit-comment-btn').disabled = false;
+            } else {
+                AUTH_HEADER_BTN_TEXT.textContent = "Увійти";
+                COMMENT_NAME.value = "Гість (Потрібен вхід)";
+                COMMENT_TEXT.placeholder = "Будь ласка, авторизуйтесь вгорі сайту, щоб залишати коментарі.";
+                COMMENT_TEXT.disabled = true;
+                COMMENT_FORM.querySelector('.submit-comment-btn').disabled = true;
+            }
+        }
+
+        function openAuthModal() {
+            if (currentUser) {
+                AUTH_FORM.style.display = 'none'; AUTH_LOGOUT_BLOCK.style.display = 'block';
+                CURRENT_USER_DISPLAY.textContent = currentUser;
+            } else {
+                AUTH_FORM.style.display = 'block'; AUTH_LOGOUT_BLOCK.style.display = 'none';
+            }
+            AUTH_MODAL.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAuthModal() {
+            AUTH_MODAL.classList.remove('active');
+            if (!MODAL.classList.contains('active')) document.body.style.overflow = 'auto';
+        }
+
+        AUTH_FORM.onsubmit = async function(e) {
+            e.preventDefault();
+            const username = AUTH_USERNAME.value.trim();
+            const email = AUTH_EMAIL.value.trim().toLowerCase();
+
+            try {
+                const userRef = db.collection("users").doc(username);
+                const doc = await userRef.get();
+
+                if (doc.exists) {
+                    const data = doc.data();
+                    if (data.email !== email) {
+                        alert(`Цей нікнейм вже зарезервований іншим користувачем! 🔒\nЛист відновлення надіслано власнику.`);
+                        return;
+                    }
+                } else {
+                    await userRef.set({ username: username, email: email, created_at: new Date() });
+                }
+
+                localStorage.setItem('peerplay_username', username);
+                localStorage.setItem('peerplay_email', email);
+                
+                alert(`Профіль ${username} активовано! 🎉`);
+                closeAuthModal(); checkUserSession();
+            } catch (err) { console.error(err); alert("Помилка зв'язку з Firebase."); }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('peerplay_username'); localStorage.removeItem('peerplay_email');
+            alert('Ви вийшли з аккаунту.');
+            closeAuthModal(); checkUserSession();
+        }
+
+        function handleSearch(event) { if (event.key === 'Enter') triggerSearch(); }
+        function triggerSearch() { searchQuery = document.getElementById('search-input').value.trim(); currentPage = 1; fetchContent(); }
+        function switchSort(sortValue) { currentSort = sortValue; currentPage = 1; fetchContent(); }
+        function switchYear(yearValue) { selectedYear = yearValue; currentPage = 1; fetchContent(); }
+
+        async function fetchContent(append = false) {
+            if (!append) { MOVIE_GRID.innerHTML = '<div class="loader">Завантаження кінострічок...</div>'; LOAD_MORE_BTN.style.display = 'none'; }
+            try {
+                let url = '';
+                
+                if (searchQuery) {
+                    let searchType = (currentCategory === 'tv' || currentCategory === 'animated_series') ? 'tv' : 'movie';
+                    url = `https://api.themoviedb.org/3/search/${searchType}?api_key=${API_KEY}&language=uk-UA&query=${encodeURIComponent(searchQuery)}&page=${currentPage}`;
+                    document.getElementById('catalog-title').textContent = `Результати пошуку: "${searchQuery}"`;
+                } else {
+                    const titles = { 'movie': 'Тренди кіно', 'tv': 'Кращі серіали', 'cartoon': 'Повнометражні мультфільми', 'animated_series': 'Популярні мультсеріали' };
+                    document.getElementById('catalog-title').textContent = titles[currentCategory];
+
+                    let sortParam = currentSort;
+                    let isTV = (currentCategory === 'tv' || currentCategory === 'animated_series');
+                    
+                    if (isTV && sortParam === 'release_date.desc') sortParam = 'first_air_date.desc';
+
+                    let yearParam = '';
+                    if (selectedYear) {
+                        yearParam = isTV ? `&first_air_date_year=${selectedYear}` : `&primary_release_year=${selectedYear}`;
+                    }
+
+                    if (currentCategory === 'cartoon') {
+                        let genreParam = selectedGenre ? `16,${selectedGenre}` : '16';
+                        url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=uk-UA&sort_by=${sortParam}&with_genres=${genreParam}${yearParam}&page=${currentPage}`;
+                    } else if (currentCategory === 'animated_series') {
+                        let genreParam = selectedGenre ? `16,${selectedGenre}` : '16';
+                        url = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&language=uk-UA&sort_by=${sortParam}&with_genres=${genreParam}${yearParam}&page=${currentPage}`;
+                    } else {
+                        url = `https://api.themoviedb.org/3/discover/${currentCategory}?api_key=${API_KEY}&language=uk-UA&sort_by=${sortParam}&with_genres=${selectedGenre}${yearParam}&page=${currentPage}`;
+                    }
+                }
+
+                const response = await fetch(url); const data = await response.json();
+                if (data.results && data.results.length > 0) {
+                    if (!append) MOVIE_GRID.innerHTML = ''; 
+                    data.results.forEach(item => { if (!item.poster_path) return; renderCard(item, MOVIE_GRID); });
+                    LOAD_MORE_BTN.style.display = (currentPage < data.total_pages) ? 'inline-flex' : 'none';
+                } else {
+                    if (!append) MOVIE_GRID.innerHTML = '<div class="error-msg">Нічого не знайдено за такими критеріями фільтрації.</div>'; LOAD_MORE_BTN.style.display = 'none';
+                }
+            } catch (error) { console.error(error); if (!append) MOVIE_GRID.innerHTML = '<div class="error-msg">Помилка мережі.</div>'; }
+        }
+
+        function renderCard(item, gridContainer) {
+            const title = item.title || item.name; 
+            const releaseDate = item.release_date || item.first_air_date; 
+            const releaseYear = releaseDate ? releaseDate.substring(0, 4) : '----';
+            const rating = item.vote_average ? item.vote_average.toFixed(1) : '0.0'; 
+            const posterUrl = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
+            
+            let cardGenres = [];
+            if (item.genre_ids) {
+                item.genre_ids.slice(0, 2).forEach(id => { if (GENRE_MAP[id]) cardGenres.push(GENRE_MAP[id]); });
+            }
+            const genresString = cardGenres.length > 0 ? ` • ${cardGenres.join(', ')}` : '';
+
+            const card = document.createElement('div'); card.className = 'movie-card'; card.style.cursor = 'pointer'; card.onclick = () => openModal(item, title, releaseYear);
+            card.innerHTML = `<div class="poster-wrap"><img src="${posterUrl}" alt="${title}" loading="lazy"><div class="rating-badge">${rating}</div></div><div class="movie-info"><h3 class="movie-title">${title}</h3><p class="movie-meta">${releaseYear}${genresString}</p></div>`;
+            gridContainer.appendChild(card);
+        }
+
+        function switchCategory(category) {
+            currentCategory = category; document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active')); event.target.classList.add('active');
+            searchQuery = ''; document.getElementById('search-input').value = ''; currentPage = 1; fetchContent();
+        }
+        function switchGenre(genreId) { selectedGenre = genreId; currentPage = 1; fetchContent(); }
+        function loadNextPage() { currentPage++; fetchContent(true); }
+
+        async function openModal(item, title, year) {
+            currentMovieId = item.id; currentMovieData = item; 
+            
+            document.title = `Дивитись трейлер "${title}" (${year}) українською / оригінал онлайн — PeerPlay TV`;
+
+            MODAL_TITLE.textContent = title; MODAL_YEAR.textContent = `${year} • 4K, українська та оригінальна озвучка`; MODAL_RATING.textContent = item.vote_average ? item.vote_average.toFixed(1) : '0.0';
+            MODAL_OVERVIEW.textContent = item.overview || "На жаль, опис українською мовою поки відсутній."; MODAL_POSTER.src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
+            MODAL_HERO.style.backgroundImage = item.backdrop_path ? `url(https://image.tmdb.org/t/p/original${item.backdrop_path})` : 'none';
+            
+            setupShareLinks(title); updateFavButton(); initStars(item.id); loadComments(item.id);
+            SHARE_DROPDOWN.classList.remove('active'); MODAL.classList.add('active'); document.body.style.overflow = 'hidden';
+            TRAILER_IFRAME.src = ""; 
+            
+            let type = (currentCategory === 'tv' || currentCategory === 'animated_series') ? 'tv' : 'movie';
+            MODAL_GENRES_LIST.textContent = "Завантаження..."; MODAL_ACTORS_LIST.textContent = "Завантаження...";
+
+            try {
+                fetch(`https://api.themoviedb.org/3/${type}/${item.id}?api_key=${API_KEY}&language=uk-UA`)
+                    .then(res => res.json())
+                    .then(detailData => {
+                        if (detailData.genres && detailData.genres.length > 0) {
+                            MODAL_GENRES_LIST.innerHTML = detailData.genres.map(g => `<span class="genre-tag">${g.name}</span>`).join('');
+                        } else { MODAL_GENRES_LIST.textContent = "Невизначено"; }
+                    });
+
+                fetch(`https://api.themoviedb.org/3/${type}/${item.id}/credits?api_key=${API_KEY}&language=uk-UA`)
+                    .then(res => res.json())
+                    .then(creditsData => {
+                        if (creditsData.cast && creditsData.cast.length > 0) {
+                            MODAL_ACTORS_LIST.textContent = creditsData.cast.slice(0, 5).map(actor => actor.name).join(', ');
+                        } else { MODAL_ACTORS_LIST.textContent = "Немає даних"; }
+                    });
+
+                let tResponse = await fetch(`https://api.themoviedb.org/3/${type}/${item.id}/videos?api_key=${API_KEY}&language=uk-UA`); let tData = await tResponse.json();
+                let trailer = tData.results ? tData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer') : null;
+                if (!trailer) {
+                    tResponse = await fetch(`https://api.themoviedb.org/3/${type}/${item.id}/videos?api_key=${API_KEY}&language=en-US`); tData = await tResponse.json();
+                    trailer = tData.results ? tData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer') : null;
+                }
+                if (trailer) { document.querySelector('.trailer-container').style.display = 'block'; TRAILER_IFRAME.src = `https://www.youtube.com/embed/${trailer.key}`; } 
+                else { document.querySelector('.trailer-container').style.display = 'none'; }
+            } catch (err) { console.error(err); }
+        }
+
+        function closeModal() { 
+            MODAL.classList.remove('active'); 
+            if(!AUTH_MODAL.classList.contains('active')) document.body.style.overflow = 'auto'; 
+            TRAILER_IFRAME.src = ""; COMMENT_FORM.reset(); if(currentUser) COMMENT_NAME.value = currentUser;
+            
+            document.title = "Фільми онлайн в 4K, офіційні трейлери українською та оригінальною озвучкою безкоштовно — PeerPlay TV";
+        }
+
+        function toggleShareDropdown(event) { event.stopPropagation(); SHARE_DROPDOWN.classList.toggle('active'); }
+
+        function setupShareLinks(movieTitle) {
+            const siteUrl = window.location.href; const messageText = `Раджу трейлер "${movieTitle}" на PeerPlay TV: ${siteUrl}`;
+            document.getElementById('share-tg').href = `https://t.me/share/url?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(`Рекомендую "${movieTitle}" на PeerPlay TV! 🚀`)}`;
+            document.getElementById('share-viber').href = `viber://forward?text=${encodeURIComponent(messageText)}`;
+            document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(messageText)}`;
+            document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`;
+        }
+
+        function copyFallbackLink() {
+            const movieTitle = MODAL_TITLE.textContent; const text = `Офіційний трейлер "${movieTitle}" на PeerPlay TV: ${window.location.href}`;
+            navigator.clipboard.writeText(text).then(() => { alert('Текст успішно скопійовано! 📋'); });
+        }
+
+        document.addEventListener('click', function() { SHARE_DROPDOWN.classList.remove('active'); });
+        window.onclick = function(e) { if (e.target === MODAL) closeModal(); if (e.target === AUTH_MODAL) closeAuthModal(); }
+
+        // ОБРАНЕ
+        function toggleFavorite() {
+            if (!currentMovieId || !currentMovieData) return;
+            let favorites = JSON.parse(localStorage.getItem('peerplay_favs')) || []; const index = favorites.findIndex(f => f.id === currentMovieId);
+            if (index > -1) { favorites.splice(index, 1); } else { currentMovieData.savedCategory = currentCategory; favorites.push(currentMovieData); }
+            localStorage.setItem('peerplay_favs', JSON.stringify(favorites)); updateFavButton(); renderFavorites();
+        }
+
+        function updateFavButton() {
+            let favorites = JSON.parse(localStorage.getItem('peerplay_favs')) || []; const isFav = favorites.some(f => f.id === currentMovieId);
+            const icon = MODAL.querySelector('#fav-toggle-btn .material-icons'); const text = document.getElementById('fav-btn-text');
+            if (isFav) { icon.textContent = 'bookmark'; text.textContent = 'В Обраному'; document.getElementById('fav-toggle-btn').style.borderColor = '#ffd600'; } 
+            else { icon.textContent = 'bookmark_border'; text.textContent = 'В обране'; document.getElementById('fav-toggle-btn').style.borderColor = 'rgba(255,255,255,0.1)'; }
+        }
+
+        function renderFavorites() {
+            const favGrid = document.getElementById('favorites-grid'); const favSection = document.getElementById('favorites-section'); const favorites = JSON.parse(localStorage.getItem('peerplay_favs')) || [];
+            if (favorites.length === 0) { favSection.style.display = 'none'; return; }
+            favSection.style.display = 'block'; favGrid.innerHTML = '';
+            favorites.forEach(item => {
+                const title = item.title || item.name; const releaseDate = item.release_date || item.first_air_date; const releaseYear = releaseDate ? releaseDate.substring(0, 4) : '----';
+                const card = document.createElement('div'); card.className = 'movie-card'; card.style.cursor = 'pointer';
+                card.onclick = () => { currentCategory = item.savedCategory || 'movie'; openModal(item, title, releaseYear); };
+                const rating = item.vote_average ? item.vote_average.toFixed(1) : '0.0';
+                card.innerHTML = `<div class="poster-wrap"><img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${title}"><div class="rating-badge">${rating}</div></div><div class="movie-info"><h3 class="movie-title">${title}</h3><p class="movie-meta">${releaseYear} • 4K & HD</p></div>`;
+                favGrid.appendChild(card);
+            });
+        }
+
+        // ОЦІНКИ
+        async function initStars(id) {
+            const saved = localStorage.getItem(`rating_${id}`) || 0; renderStars(saved);
+            RATING_STATUS.innerHTML = saved > 0 ? `Твоя оцінка: <span class="accent-color">${saved} з 5</span>` : "Натисніть для голосування";
+        }
+
+        function renderStars(rating) { STARS_CONTAINER.querySelectorAll('.star').forEach(star => { const val = parseInt(star.getAttribute('data-value')); star.textContent = val <= rating ? 'star' : 'star_border'; }); }
+        STARS_CONTAINER.querySelectorAll('.star').forEach(star => {
+            star.onmouseenter = function() { renderStars(parseInt(this.getAttribute('data-value'))); };
+            star.onclick = async function() {
+                const val = parseInt(this.getAttribute('data-value')); localStorage.setItem(`rating_${currentMovieId}`, val);
+                RATING_STATUS.innerHTML = `Дякуємо! Твоя оцінка: <span class="accent-color">${val} з 5</span>`;
+                if (currentUser) {
+                    try { await db.collection("ratings").doc(`${currentUser}_${currentMovieId}`).set({ username: currentUser, movieId: currentMovieId.toString(), rating: val, updated_at: new Date() }); } catch (e) { console.error(e); }
+                }
+            };
+        });
+        STARS_CONTAINER.onmouseleave = function() { renderStars(localStorage.getItem(`rating_${currentMovieId}`) || 0); };
+
+        // КОМЕНТАРІ FIRESTORE
+        async function loadComments(id) {
+            COMMENTS_LIST.innerHTML = '<div style="color:#535763; font-style:italic">Завантаження обговорення...</div>';
+            try {
+                const snapshot = await db.collection("comments").where("movieId", "==", id.toString()).get();
+                COMMENTS_LIST.innerHTML = '';
+                if (snapshot.empty) { COMMENTS_LIST.innerHTML = '<p class="no-comments">Будьте першим, хто залишить відгук про трейлер!</p>'; return; }
+
+                let commentsArray = [];
+                snapshot.forEach(doc => commentsArray.push(doc.data()));
+                commentsArray.sort((a, b) => b.raw_date - a.raw_date);
+
+                commentsArray.forEach(c => {
+                    const item = document.createElement('div'); item.className = 'comment-item';
+                    item.innerHTML = `<div class="comment-meta"><span class="comment-author">${escapeHtml(c.name)}</span><span class="comment-date">${c.date}</span></div><p class="comment-text">${escapeHtml(c.text)}</p>`;
+                    COMMENTS_LIST.appendChild(item);
+                });
+            } catch (err) { console.error(err); }
+        }
+
+        COMMENT_FORM.onsubmit = async function(e) {
+            e.preventDefault(); if (!currentMovieId || !currentUser) return;
+            const text = COMMENT_TEXT.value.trim(); const dateStr = new Date().toLocaleDateString('uk-UA', { hour: '2-digit', minute: '2-digit' });
+            const newComment = { movieId: currentMovieId.toString(), name: currentUser, text: text, date: dateStr, raw_date: Date.now() };
+
+            try {
+                await db.collection("comments").add(newComment);
+                COMMENT_TEXT.value = ''; loadComments(currentMovieId); 
+            } catch (err) { console.error(err); }
+        }
+
+        function escapeHtml(str) { return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
+
+        checkUserSession(); renderFavorites(); fetchContent();
+    </script>
+</body>
+</html>
