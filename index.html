@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta name="google-site-verification" content="hjIi_NdlSHVtiPsh4nJYh26EzezhWmVLXl8wwzBRjBs" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -18,14 +17,18 @@
 
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    
+    <!-- 🗺️ ПІДКЛЮЧЕННЯ КАРТИ ІНДЕКСАЦІЇ АКТОРІВ ДЛЯ ГІБРИДНОГО РОУТИНГУ -->
+    <script src="js/actors-map.js"></script>
 </head>
 <body>
 
     <header class="main-header">
         <div class="container header-flex">
-            <div class="logo">
+            <!-- Логотип працює як лінк на головну в поточній вкладці -->
+            <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
                 <span class="accent-color">Peer</span>Play TV
-            </div>
+            </a>
             
             <div class="header-right-side">
                 <button id="auth-header-btn" class="auth-trigger-btn" onclick="openAuthModal()">
@@ -33,7 +36,6 @@
                     <span id="auth-btn-text">Увійти</span>
                 </button>
 
-                <!-- 🚀 ОНОВЛЕНЕ ПОСИЛАННЯ НА НОВИЙ ФАЙЛ APK -->
                 <a href="https://github.com/Chief-0107/PeerPlay-TV/releases/download/v1.4/peertv-app.apk" download class="download-btn">
                     <span class="material-icons">download</span>
                     <span>Завантажити APK</span>
@@ -44,17 +46,14 @@
 
     <section class="hero">
         <div class="container hero-content">
-            <!-- 🚀 ПОВЕРНУТО СТАРИЙ ЗАГОЛОВОК ТА ТЕКСТ -->
             <h1>Дивіться офіційні трейлери та фільми онлайн в <span class="accent-color">4K</span> з українською та оригінальною озвучкою</h1>
-            <p class="hero-subtitle">Сучасний медіа-плеєр для вашого Smart TV та Android пристроїв. Усі гарячі трейлери, висока якість Full HD 1080p, підтримка мови оригіналу, стабільна робота та абсолютна свобода без реклами.</p>
+            <p class="hero-subtitle">Сучасний медіа-плеєр для вашого Smart TV та Android пристроїв. Усі гарячі трейлери, висока якість Full HD 1080p, підтримка мови оригіналу, стабільна работа та абсолютна свобода без реклами.</p>
             
-            <!-- 🚀 БЛОК З ІНФОРМАЦІЄЮ ПРО ПЛАТФОРМИ (ЗАЛИШЕНО) -->
             <div style="margin-bottom: 25px; font-size: 14px; color: #ffd600; background: rgba(255, 214, 0, 0.05); border: 1px solid rgba(255, 214, 0, 0.2); padding: 12px 20px; border-radius: 8px; display: inline-block;">
                 <span class="material-icons" style="font-size: 18px; vertical-align: sub; margin-right: 6px;">info</span>
-                <b>Зверніть увагу:</b> Наразі застосунок доступний виключно для <u>Android TV та приставок</u>. Версії для Android-смартфонів та ПК (Windows) вже знаходяться в розробці!
+                <b>Зверніть увагу:</b> Наразі застосунок доступний виключно для <u>Android TV та приставок</u>, а також Android-смартфонів.
             </div>
 
-            <!-- 🚀 ПОВЕРНУТО СТАРІ ІКОНКИ-БЕЙДЖИ -->
             <div class="features-badges">
                 <span class="badge"><span class="material-icons">movie</span> Офіційні трейлери</span>
                 <span class="badge"><span class="material-icons">high_quality</span> 4K Ultra HD</span>
@@ -184,6 +183,7 @@
         </div>
     </main>
 
+    <!-- МОДАЛЬНЕ ВІКНО КІНОСТРІЧОК -->
     <div id="movie-modal" class="modal">
         <div class="modal-content">
             <button class="close-modal-btn" onclick="closeModal()">
@@ -210,16 +210,16 @@
                             <span class="material-icons">share</span> Поділитись фільмом
                         </button>
                         <div id="share-dropdown" class="share-dropdown">
-                            <a id="share-tg" href="#" target="_blank" class="share-item tg">
+                            <a id="share-tg" href="#" class="share-item tg">
                                 <span class="share-icon-tg"></span> Telegram
                             </a>
-                            <a id="share-viber" href="#" target="_blank" class="share-item viber">
+                            <a id="share-viber" href="#" class="share-item viber">
                                 <span class="share-icon-viber"></span> Viber
                             </a>
-                            <a id="share-wa" href="#" target="_blank" class="share-item wa">
+                            <a id="share-wa" href="#" class="share-item wa">
                                 <span class="share-icon-wa"></span> WhatsApp
                             </a>
-                            <a id="share-fb" href="#" target="_blank" class="share-item fb">
+                            <a id="share-fb" href="#" class="share-item fb">
                                 <span class="share-icon-fb"></span> Facebook
                             </a>
                             <button onclick="copyFallbackLink()" class="share-item copy-link">
@@ -284,6 +284,7 @@
         </div>
     </div>
 
+    <!-- АВТЕНТИФІКАЦІЯ -->
     <div id="auth-modal" class="modal">
         <div class="modal-content" style="max-width: 450px;">
             <button class="close-modal-btn" onclick="closeAuthModal()">
@@ -327,12 +328,11 @@
                 </div>
                 <div class="faq-item">
                     <h3>🤖 Як встановити додаток PeerPlay TV на пристрій?</h3>
-                    <!-- 🚀 ДОДАНО ТЕКСТ ПРО ПЛАТФОРМИ В FAQ -->
                     <p>Скачайте інсталяційний APK файл безкоштовно з нашого сайту на звичайну флешку або скористайтеся додатком Downloader на вашому телевізорі. <b>Важливо:</b> зараз підтримується тільки Android TV та приставки. Застосунки для мобільних пристроїв на Android та комп'ютерів на Windows знаходяться в розробці та будуть випущені згодом.</p>
                 </div>
                 <div class="faq-item">
                     <h3>🇺🇦 Чи є на сайті фільми та серіали з українською та оригінальною озвучкою?</h3>
-                    <p>Так! Наш каталог за допомогою розумної індексації TMDb API збирає тренди тижня, популярні мультфільми та мультсеріали. Ви знайдете контент як з якісним українським перекладом (дубляжем), так і мовою оригіналу для поціновувачів оригінальної озвучки та автентичного звучання. Користувачі можуть залишати свої коментарі та виставляти оцінки стрічкам.</p>
+                    <p>Так! Наш каталог за допомогою розумної індексації TMDb API збирає тренди тижня, популярні мультфільми та мультсеріали. Ви знайдете контент як з якісним українським перекладом (дубляжем), так і мовою оригіналу для поціновувачів оригінальної озвучки та автентичного звучання. Користувачі можуть залишати свои коментарі та виставляти оцінки стрічкам.</p>
                 </div>
                 <div class="faq-item">
                     <h3>🎥 Чи можна дивитися офіційні трейлери фільмів українською мовою?</h3>
@@ -372,6 +372,22 @@
     </script>
 
     <script>
+        function getActorSlug(name) {
+            const translitDict = {
+                'а':'a','б':'b','в':'v','г':'h','ґ':'g','д':'d','е':'e','є':'ye','ж':'zh','з':'z','и':'y','і':'i','ї':'yi','й':'y',
+                'к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'kh','ц':'ts','ч':'ch',
+                'ш':'sh','щ':'shch','ь':'','ю':'yu','я':'ya'
+            };
+            let text = name.toLowerCase();
+            let translated = "";
+            for (let char of text) {
+                translated += translitDict[char] !== undefined ? translitDict[char] : char;
+            }
+            let slug = translated.replace(/[^a-z0-9\s-]/g, '');
+            slug = slug.replace(/[\s-]+/g, '-').trim('-');
+            return slug || "actor";
+        }
+
         const API_KEY = 'd81559e3ee0e79ee39f56758f4897fff'; 
         const MOVIE_GRID = document.getElementById('movie-grid');
         const LOAD_MORE_BTN = document.getElementById('load-more-btn');
@@ -427,7 +443,7 @@
             if (currentUser) {
                 AUTH_HEADER_BTN_TEXT.textContent = currentUser;
                 COMMENT_NAME.value = currentUser;
-                COMMENT_TEXT.placeholder = "Залишіть свій відгук про фільм...";
+                COMMENT_TEXT.placeholder = "Залишіть свій відгук про mlflow...";
                 COMMENT_TEXT.disabled = false;
                 COMMENT_FORM.querySelector('.submit-comment-btn').disabled = false;
             } else {
@@ -592,7 +608,18 @@
                     .then(res => res.json())
                     .then(creditsData => {
                         if (creditsData.cast && creditsData.cast.length > 0) {
-                            MODAL_ACTORS_LIST.textContent = creditsData.cast.slice(0, 5).map(actor => actor.name).join(', ');
+                            MODAL_ACTORS_LIST.innerHTML = creditsData.cast.slice(0, 5).map(actor => {
+                                // 🚀 🔥 ГІБРИДНИЙ КЛІЄНТСЬКИЙ РОУТИНГ АКТОРІВ ДЛЯ ЗАХИСТУ ВІД ПОМИЛОК 404
+                                let actorUrl;
+                                if (typeof generatedActorsMap !== 'undefined' && generatedActorsMap[actor.id]) {
+                                    // Якщо актор є у згенерованому файлі-довіднику ТОП-2000 — ведемо на готову SEO-сторінку
+                                    actorUrl = `actors/${generatedActorsMap[actor.id]}`;
+                                } else {
+                                    // Якщо актор маловідомий — перекидаємо на універсальний динамічний шаблон-профіль
+                                    actorUrl = `actors/profile.html?id=${actor.id}`;
+                                }
+                                return `<a href="${actorUrl}" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600; transition: opacity 0.2s;">${actor.name}</a>`;
+                            }).join(', ');
                         } else { MODAL_ACTORS_LIST.textContent = "Немає даних"; }
                     });
 
@@ -631,7 +658,10 @@
         }
 
         document.addEventListener('click', function() { SHARE_DROPDOWN.classList.remove('active'); });
-        window.onclick = function(e) { if (e.target === MODAL) closeModal(); if (e.target === AUTH_MODAL) closeAuthModal(); }
+        window.onclick = function(e) { 
+            if (e.target === MODAL) closeModal(); 
+            if (e.target === AUTH_MODAL) closeAuthModal(); 
+        }
 
         // ОБРАНЕ
         function toggleFavorite() {
@@ -672,7 +702,7 @@
         STARS_CONTAINER.querySelectorAll('.star').forEach(star => {
             star.onmouseenter = function() { renderStars(parseInt(this.getAttribute('data-value'))); };
             star.onclick = async function() {
-                const val = parseInt(this.getAttribute('data-value')); localStorage.setItem(`rating_${currentMovieId}`, val);
+                const val = parseInt(star.getAttribute('data-value')); localStorage.setItem(`rating_${currentMovieId}`, val);
                 RATING_STATUS.innerHTML = `Дякуємо! Твоя оцінка: <span class="accent-color">${val} з 5</span>`;
                 if (currentUser) {
                     try { await db.collection("ratings").doc(`${currentUser}_${currentMovieId}`).set({ username: currentUser, movieId: currentMovieId.toString(), rating: val, updated_at: new Date() }); } catch (e) { console.error(e); }
@@ -714,7 +744,35 @@
 
         function escapeHtml(str) { return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
 
-        checkUserSession(); renderFavorites(); fetchContent();
+        function checkDeepLinks() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = urlParams.get('movie');
+            const tvId = urlParams.get('tv');
+
+            if (movieId || tvId) {
+                const id = movieId || tvId;
+                const type = movieId ? 'movie' : 'tv';
+                
+                fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=uk-UA`)
+                    .then(res => res.json())
+                    .then(item => {
+                        if (item.id) {
+                            const title = item.title || item.name;
+                            const date = item.release_date || item.first_air_date;
+                            const year = date ? date.substring(0, 4) : '----';
+                            openModal(item, title, year);
+                        }
+                    })
+                    .catch(err => console.error("Помилка авто-відкриття фільму:", err));
+            }
+        }
+
+        checkUserSession(); 
+        renderFavorites(); 
+        
+        fetchContent().then(() => {
+            checkDeepLinks();
+        });
     </script>
 </body>
 </html>

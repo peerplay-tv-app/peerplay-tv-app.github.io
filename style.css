@@ -334,6 +334,25 @@ body {
 /* Кастомні плашки жанрів у модалці */
 .genre-tag { background-color: rgba(255, 214, 0, 0.1); color: #ffd600; border: 1px solid rgba(255, 214, 0, 0.2); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 6px; display: inline-block; }
 
+/* 🚀 ДОДАНІ СТИЛІ: Кастомні СЕО-посилання на акторів у модалці */
+.actor-modal-link {
+    display: inline-block;
+    color: #ffd600;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+.actor-modal-link:hover {
+    color: #ffe040 !important;
+    text-shadow: 0 0 8px rgba(255, 214, 0, 0.4);
+    border-bottom-color: #ffe040;
+}
+.actor-modal-link:not(:last-child)::after {
+    content: "";
+    margin-right: 4px;
+}
+
 /* ЗІРОЧКИ ОЦІНКИ */
 .user-rating-section { margin-top: 20px; background-color: rgba(255, 255, 255, 0.02); padding: 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.04); }
 .user-rating-section h4 { font-size: 13px; color: #7e8494; margin-bottom: 5px; }
@@ -410,4 +429,60 @@ body {
     .share-dropdown { left: auto; right: 0; } 
     .header-right-side { width: 100%; justify-content: space-between; }
     .auth-trigger-btn, .download-btn { flex: 1; justify-content: center; font-size: 13px; }
+}
+/* ====================================================================================
+   📰 БЛОК 10: СТИЛІ ТА АДАПТИВНІСТЬ ДЛЯ ВІДЖЕТА МЕДІА-НОВИН
+   ==================================================================================== */
+.news-sidebar div {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Ефект мікро-зсуву та підсвічування заголовків новин при наведенні */
+.news-sidebar div:hover h4 {
+    color: #ffd600 !important;
+    transition: color 0.2s ease;
+}
+
+/* Адаптивна трансформація під сітку смартфонів та планшетів */
+@media (max-width: 1024px) {
+    .catalog-section .container {
+        grid-template-columns: 1fr !important; /* Перетворюємо у 1 колонку */
+    }
+    .news-sidebar {
+        position: static !important; /* Вимикаємо плаваючий ефект */
+        width: 100% !important;
+        margin-top: 40px;
+    }
+}
+
+/* ====================================================================================
+   🎬 БЛОК 11: СТИЛІ СТРІЧКИ «ВІДОМИЙ ЗА» ДЛЯ СТОРІНОК АКТОРІВ
+   ==================================================================================== */
+.known-for-scroll {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: #ffd600 rgba(255, 255, 255, 0.05);
+}
+
+/* Кастомізація смуги прокрутки (скроллбару) */
+.known-for-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+.known-for-scroll::-webkit-scrollbar-thumb {
+    background-color: #ffd600;
+    border-radius: 10px;
+}
+.known-for-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Анімація плавного збільшення картки при наведенні мишки */
+.known-card {
+    transition: transform 0.2s ease-in-out !important;
+}
+.known-card:hover {
+    transform: scale(1.05) !important;
 }

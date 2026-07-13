@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завантаження профілю актора... | PeerPlay TV</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body { background-color: #0c0d14; color: #f5f6f9; font-family: sans-serif; padding: 40px; margin: 0; }
+        .actor-card-wrapper { max-width: 800px; margin: 40px auto; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 30px; border-radius: 12px; }
+        @media (max-width: 600px) { body { padding: 15px 10px !important; } .actor-card-wrapper { margin: 10px auto !important; padding: 15px !important; } }
+    </style>
+</head>
+<body>
+    <a href="../index.html" style="color: #ffd600; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+        <span class="material-icons" style="font-size: 18px;">arrow_back</span> На головну
+    </a>
+
+    <div class="actor-card-wrapper">
+        <h1 id="dyn-name" style="font-size: 38px; color: #ffd600; margin-bottom: 15px; font-weight: 800;">Завантаження...</h1>
+        <p style="color: #7e8494; font-size: 15px; margin-bottom: 8px;">📅 Дата народження: <strong id="dyn-birthday" style="color: #fff;">...</strong></p>
+        <p style="color: #7e8494; font-size: 15px; margin-bottom: 30px;">📍 Місце народження: <strong id="dyn-place" style="color: #fff;">...</strong></p>
+        
+        <h2 style="font-size: 22px; color: #ffd600; margin-bottom: 15px; border-left: 4px solid #ffd600; padding-left: 10px;">Біографія</h2>
+        <p id="dyn-bio" style="line-height: 1.7; font-size: 16px; color: #b3b7c9; text-align: justify; white-space: pre-line; margin-bottom: 40px;">Шукаємо інформацію в архівах TMDB...</p>
+
+        <h2 style="font-size: 22px; color: #ffd600; margin-bottom: 15px; border-left: 4px solid #ffd600; padding-left: 10px;">Галерея та фото актора</h2>
+        <div id="actor-media">
+            <p style="color: #535763; font-style: italic;">Завантаження офіційних фотографій...</p>
+        </div>
+    </div>
+
+    <script>
+        async function loadDynamicActor() {
+            const params = new URLSearchParams(window.location.search);
+            const actorId = params.get('id');
+            if (!actorId) return;
+
+            // Передаємо ID в блок медіа, щоб твій actor-dynamic.js підхопив його
+            document.getElementById('actor-media').setAttribute('data-tmdb-id', actorId);
+
+            const API_KEY = 'd81559e3ee0e79ee39f56758f4897fff';
+            try {
+                // Тягнемо деталі актора
+                const res = await fetch(`https://api.themoviedb.org/3/person/${actorId}?api_key=${API_KEY}&language=uk-UA`);
+                const actor = await res.json();
+
+                document.getElementById('dyn-name').innerText = actor.name || "Невідомий актор";
+                document.getElementById('dyn-birthday').innerText = actor.birthday || "Немає даних";
+                document.getElementById('dyn-place').innerText = actor.place_of_birth || "Немає даних";
+                document.title = `${actor.name} — Біографія актора | PeerPlay TV`;
+
+                let bio = actor.biography || "Біографія оновлюється...";
+                // Якщо біографія прийшла англійською, шлемо на автопереклад
+                if (bio !== "Біографія оновлюється..." && !/[а-яА-ЯіІїЇєЄґҐ]/.test(bio)) {
+                    const transRes = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=uk&dt=t&q=${encodeURIComponent(bio)}`);
+                    const transData = await transRes.json();
+                    bio = transData[0].map(s => s[0]).join('');
+                }
+                document.getElementById('dyn-bio').innerText = bio;
+
+                // Запускаємо твій нативний скрипт галереї, якщо він лежить за цим шляхом
+                if (window.initActorMedia) window.initActorMedia(actorId);
+
+            } catch (err) {
+                console.error("Помилка завантаження динамічного профілю:", err);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", loadDynamicActor);
+    </script>
+    <script src="../js/actor-dynamic.js"></script>
+</body>
+</html>
