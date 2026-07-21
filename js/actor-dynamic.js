@@ -7,114 +7,27 @@ let galleryFirebaseInit = false;
 let galleryDb = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Ініціалізуємо галерею фотографій актора
     const mediaContainer = document.getElementById("actor-media");
     if (mediaContainer) {
         const actorId = mediaContainer.getAttribute("data-tmdb-id");
         if (actorId) {
             initActorMediaGallery(actorId);
-            loadDynamicCredits(actorId); // 🚀 НОВИЙ ВИКЛИК: Завантаження фільмографії та відомих ролей
         }
     }
 });
 
-// 🚀 НОВА ФУНКЦІЯ: Динамічне завантаження фільмографії з фільтром та постерами
-async function loadDynamicCredits(actorId) {
-    try {
-        const res = await fetch(`https://api.themoviedb.org/3/person/${actorId}/combined_credits?api_key=${ACTOR_API_KEY}&language=uk-UA`);
-        const data = await res.json();
-        
-        // 1. ФІЛЬТРУЄМО СМІТТЯ (Ток-шоу - 10767, Реаліті - 10764, Новини - 10763)
-        const excludeGenres = [10767, 10764, 10763];
-        let cleanCredits = data.cast.filter(item => {
-            if (item.media_type === 'movie') return true;
-            if (item.media_type === 'tv' && item.genre_ids) {
-                return !item.genre_ids.some(id => excludeGenres.includes(id));
-            }
-            return false;
-        });
-
-        // 2. БЛОК "ВІДОМИЙ ЗА" (Сортуємо чисті дані за популярністю, беремо Топ-8)
-        const knownForContainer = document.getElementById('known-for-grid');
-        if (knownForContainer) {
-            let knownForArray = [...cleanCredits].sort((a, b) => b.popularity - a.popularity).slice(0, 8);
-            knownForContainer.innerHTML = '';
-            knownForArray.forEach(item => {
-                if (!item.poster_path) return;
-                knownForContainer.appendChild(createMovieCard(item, false));
-            });
-        }
-
-        // 3. ФІЛЬМОГРАФІЯ (Сітка з усіма фільмами, відсортована за датою виходу)
-        const filmographyContainer = document.getElementById('filmography-grid');
-        if (filmographyContainer) {
-            let filmographyArray = [...cleanCredits].sort((a, b) => {
-                let dateA = a.release_date || a.first_air_date || '0000';
-                let dateB = b.release_date || b.first_air_date || '0000';
-                return new Date(dateB) - new Date(dateA); 
-            });
-            
-            filmographyContainer.innerHTML = '';
-            filmographyArray.forEach(item => {
-                if (!item.poster_path) return;
-                filmographyContainer.appendChild(createMovieCard(item, true)); // true = показуємо роль
-            });
-        }
-
-    } catch (err) {
-        console.error("Помилка завантаження фільмографії:", err);
-    }
-}
-
-// 🚀 ДОПОМІЖНА ФУНКЦІЯ: Створення картки з постером
-function createMovieCard(item, showRole = false) {
-    const title = item.title || item.name;
-    const releaseDate = item.release_date || item.first_air_date;
-    const releaseYear = releaseDate ? releaseDate.substring(0, 4) : '----';
-    const rating = item.vote_average ? item.vote_average.toFixed(1) : '0.0';
-    const posterUrl = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
-    
-    // Якщо треба, додаємо текст ролі жовтим кольором
-    const characterInfo = (showRole && item.character) 
-        ? `<p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: ${escapeInjHtml(item.character)}</p>` 
-        : '';
-
-    const mediaType = item.media_type === 'tv' ? 'tv' : 'movie';
-    // Посилання на головну сторінку для авто-відкриття трейлера
-    const linkToMain = `../index.html?${mediaType}=${item.id}`;
-
-    const card = document.createElement('div');
-    card.className = 'movie-card';
-    card.style.cursor = 'pointer';
-    
-    // Клік по картці перекидає на головну і відкриває фільм
-    card.onclick = () => {
-        window.location.href = linkToMain;
-    };
-
-    card.innerHTML = `
-        <div class="poster-wrap">
-            <img src="${posterUrl}" alt="${title}" loading="lazy">
-            <div class="rating-badge">${rating}</div>
-        </div>
-        <div class="movie-info">
-            <h3 class="movie-title">${title}</h3>
-            <p class="movie-meta">${releaseYear}</p>
-            ${characterInfo}
-        </div>
-    `;
-    return card;
-}
-
-// ГЛОБАЛЬНЕ ПЕРЕХОПЛЕННЯ КЛІКІВ НА ФІЛЬМИ
+// ГЛОБАЛЬНЕ ПЕРЕХОПЛЕННЯ КЛІКІВ НА ФІЛЬМИ ТА СЕРІАЛИ
 document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     if (!link) return;
 
     const href = link.getAttribute('href') || '';
     
+    // Перехоплюємо переходи на головну з параметрами фільмів
     if (href.includes('index.html?movie=') || href.includes('index.html?tv=') || href.includes('?movie=') || href.includes('?tv=')) {
         
-        // Якщо це динамічна сторінка (profile.html), там є своя модалка, ігноруємо
+        // Якщо це динамічна сторінка (profile.html), там є власна модалка, ігноруємо
         if (document.getElementById('movie-modal') && window.location.pathname.includes('profile.html')) {
             return; 
         }
@@ -142,6 +55,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// --- ГАЛЕРЕЯ ФОТОГРАФІЙ АКТОРІВ ---
 async function initActorMediaGallery(actorId) {
     const mediaContainer = document.getElementById("actor-media");
     if (!mediaContainer) return;
@@ -169,6 +83,7 @@ async function initActorMediaGallery(actorId) {
     }
 }
 
+// --- СТВОРЕННЯ ТА ВІДКРИТТЯ МОДАЛЬНОГО ВІКНА ТРЕЙЛЕРА ---
 async function openInjectedModal(type, id) {
     if (!document.getElementById('injected-movie-modal')) {
         injectModalHTML();
@@ -179,7 +94,7 @@ async function openInjectedModal(type, id) {
     document.body.style.overflow = 'hidden';
     
     const trailerIframe = document.getElementById('inj-trailer-iframe');
-    trailerIframe.src = "";
+    if (trailerIframe) trailerIframe.src = "";
     
     modal.setAttribute('data-current-id', id);
     modal.setAttribute('data-current-type', type);
@@ -190,7 +105,7 @@ async function openInjectedModal(type, id) {
         
         window.currentInjectedMovieData = item;
 
-        const title = item.title || item.name;
+        const title = item.title || item.name || "Без назви";
         const date = item.release_date || item.first_air_date;
         const year = date ? date.substring(0, 4) : '----';
 
@@ -198,8 +113,16 @@ async function openInjectedModal(type, id) {
         document.getElementById('inj-modal-year').textContent = `${year} • 4K, українська озвучка`;
         document.getElementById('inj-modal-rating').textContent = item.vote_average ? item.vote_average.toFixed(1) : '0.0';
         document.getElementById('inj-modal-overview').textContent = item.overview || "На жаль, опис українською мовою поки відсутній.";
-        document.getElementById('inj-modal-poster').src = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
-        document.getElementById('inj-modal-hero').style.backgroundImage = item.backdrop_path ? `url(https://image.tmdb.org/t/p/original${item.backdrop_path})` : 'none';
+        
+        const posterEl = document.getElementById('inj-modal-poster');
+        if (posterEl) {
+            posterEl.src = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : 'https://via.placeholder.com/500x750/0c0d14/ffd600?text=No+Poster';
+        }
+        
+        const heroEl = document.getElementById('inj-modal-hero');
+        if (heroEl) {
+            heroEl.style.backgroundImage = item.backdrop_path ? `url(https://image.tmdb.org/t/p/original${item.backdrop_path})` : 'none';
+        }
 
         setupInjectedShareLinks(title, type, id);
         updateInjectedFavButton(id);
@@ -210,30 +133,29 @@ async function openInjectedModal(type, id) {
         checkInjectedSession();
 
         const genresList = document.getElementById('inj-modal-genres-list');
-        if (item.genres && item.genres.length > 0) {
-            genresList.innerHTML = item.genres.map(g => `<span class="genre-tag">${g.name}</span>`).join('');
-        } else {
-            genresList.textContent = "Невизначено";
+        if (genresList) {
+            genresList.innerHTML = (item.genres && item.genres.length > 0) ? item.genres.map(g => `<span class="genre-tag">${escapeInjHtml(g.name)}</span>`).join('') : "Невизначено";
         }
 
         const actorsList = document.getElementById('inj-modal-actors-list');
-        actorsList.textContent = "Завантаження...";
-        
-        fetch(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${ACTOR_API_KEY}&language=uk-UA`)
-            .then(res => res.json())
-            .then(creditsData => {
-                if (creditsData.cast && creditsData.cast.length > 0) {
-                    actorsList.innerHTML = creditsData.cast.slice(0, 5).map(actor => {
-                        let actorUrl = `profile.html?id=${actor.id}`;
-                        if (typeof generatedActorsMap !== 'undefined' && generatedActorsMap[actor.id]) {
-                            actorUrl = window.location.pathname.includes('actors/') ? `../${generatedActorsMap[actor.id]}` : generatedActorsMap[actor.id];
-                        }
-                        return `<a href="${actorUrl}" style="color: #ffd600; text-decoration: none; font-weight: 600;">${actor.name}</a>`;
-                    }).join(', ');
-                } else {
-                    actorsList.textContent = "Немає даних";
-                }
-            });
+        if (actorsList) {
+            actorsList.textContent = "Завантаження...";
+            fetch(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${ACTOR_API_KEY}&language=uk-UA`)
+                .then(res => res.json())
+                .then(creditsData => {
+                    if (creditsData.cast && creditsData.cast.length > 0) {
+                        actorsList.innerHTML = creditsData.cast.slice(0, 5).map(actor => {
+                            let actorUrl = `profile.html?id=${actor.id}`;
+                            if (typeof generatedActorsMap !== 'undefined' && generatedActorsMap[actor.id]) {
+                                actorUrl = window.location.pathname.includes('actors/') ? `../${generatedActorsMap[actor.id]}` : generatedActorsMap[actor.id];
+                            }
+                            return `<a href="${actorUrl}" style="color: #ffd600; text-decoration: none; font-weight: 600;">${escapeInjHtml(actor.name)}</a>`;
+                        }).join(', ');
+                    } else {
+                        actorsList.textContent = "Немає даних";
+                    }
+                }).catch(() => { actorsList.textContent = "Немає даних"; });
+        }
 
         let tResponse = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${ACTOR_API_KEY}&language=uk-UA`);
         let tData = await tResponse.json();
@@ -245,15 +167,16 @@ async function openInjectedModal(type, id) {
             trailer = tData.results ? tData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer') : null;
         }
         
-        if (trailer) {
-            document.querySelector('.inj-trailer-container').style.display = 'block';
+        const trailerBox = document.querySelector('.inj-trailer-container');
+        if (trailer && trailerIframe && trailerBox) {
+            trailerBox.style.display = 'block';
             trailerIframe.src = `https://www.youtube.com/embed/${trailer.key}`;
-        } else {
-            document.querySelector('.inj-trailer-container').style.display = 'none';
+        } else if (trailerBox) {
+            trailerBox.style.display = 'none';
         }
 
     } catch (err) {
-        console.error("Помилка відкриття фільму:", err);
+        console.error("Помилка відкриття фільму в модалці:", err);
     }
 }
 
@@ -348,51 +271,56 @@ function injectModalHTML() {
     document.body.appendChild(div.firstElementChild);
 
     const starsContainer = document.getElementById('inj-stars-rating');
-    starsContainer.querySelectorAll('.star').forEach(star => {
-        star.onclick = async function() {
-            const val = parseInt(star.getAttribute('data-value'));
+    if (starsContainer) {
+        starsContainer.querySelectorAll('.star').forEach(star => {
+            star.onclick = async function() {
+                const val = parseInt(star.getAttribute('data-value'));
+                const modal = document.getElementById('injected-movie-modal');
+                const movieId = modal.getAttribute('data-current-id');
+                const user = localStorage.getItem('peerplay_username');
+                
+                localStorage.setItem(`rating_${movieId}`, val);
+                document.getElementById('inj-rating-status').innerHTML = `Оцінка: <span style="color: #ffd600;">${val} з 5</span>`;
+                
+                starsContainer.querySelectorAll('.star').forEach(s => { 
+                    const sVal = parseInt(s.getAttribute('data-value')); 
+                    s.textContent = sVal <= val ? 'star' : 'star_border'; 
+                });
+
+                if (user && galleryDb) {
+                    try {
+                        await galleryDb.collection("ratings").doc(`${user}_${movieId}`).set({
+                            username: user, movieId: movieId.toString(), rating: val, updated_at: new Date()
+                        });
+                    } catch (e) {}
+                }
+            };
+        });
+    }
+
+    const commentForm = document.getElementById('inj-comment-form');
+    if (commentForm) {
+        commentForm.onsubmit = async function(e) {
+            e.preventDefault();
             const modal = document.getElementById('injected-movie-modal');
             const movieId = modal.getAttribute('data-current-id');
             const user = localStorage.getItem('peerplay_username');
             
-            localStorage.setItem(`rating_${movieId}`, val);
-            document.getElementById('inj-rating-status').innerHTML = `Оцінка: <span style="color: #ffd600;">${val} з 5</span>`;
+            if (!movieId || !user || !galleryDb) return;
             
-            starsContainer.querySelectorAll('.star').forEach(s => { 
-                const sVal = parseInt(s.getAttribute('data-value')); 
-                s.textContent = sVal <= val ? 'star' : 'star_border'; 
-            });
-
-            if (user && galleryDb) {
-                try {
-                    await galleryDb.collection("ratings").doc(`${user}_${movieId}`).set({
-                        username: user, movieId: movieId.toString(), rating: val, updated_at: new Date()
-                    });
-                } catch (e) { console.error(e); }
-            }
+            const commentText = document.getElementById('inj-comment-text');
+            const text = commentText.value.trim();
+            const dateStr = new Date().toLocaleDateString('uk-UA', { hour: '2-digit', minute: '2-digit' });
+            
+            try {
+                await galleryDb.collection("comments").add({
+                    movieId: movieId.toString(), name: user, text: text, date: dateStr, raw_date: Date.now()
+                });
+                commentText.value = '';
+                loadInjectedComments(movieId);
+            } catch (err) {}
         };
-    });
-
-    document.getElementById('inj-comment-form').onsubmit = async function(e) {
-        e.preventDefault();
-        const modal = document.getElementById('injected-movie-modal');
-        const movieId = modal.getAttribute('data-current-id');
-        const user = localStorage.getItem('peerplay_username');
-        
-        if (!movieId || !user || !galleryDb) return;
-        
-        const commentText = document.getElementById('inj-comment-text');
-        const text = commentText.value.trim();
-        const dateStr = new Date().toLocaleDateString('uk-UA', { hour: '2-digit', minute: '2-digit' });
-        
-        try {
-            await galleryDb.collection("comments").add({
-                movieId: movieId.toString(), name: user, text: text, date: dateStr, raw_date: Date.now()
-            });
-            commentText.value = '';
-            loadInjectedComments(movieId);
-        } catch (err) { console.error(err); }
-    };
+    }
 
     document.addEventListener('click', () => {
         const drop = document.getElementById('inj-share-drop');
@@ -404,7 +332,8 @@ function closeInjectedModal() {
     const modal = document.getElementById('injected-movie-modal');
     if (modal) {
         modal.classList.remove('active');
-        document.getElementById('inj-trailer-iframe').src = "";
+        const iframe = document.getElementById('inj-trailer-iframe');
+        if (iframe) iframe.src = "";
     }
     document.body.style.overflow = 'auto';
 }
@@ -414,8 +343,10 @@ function setupInjectedShareLinks(movieTitle, type, id) {
     const shareUrl = `${mainSiteUrl}?${type}=${id}`;
     const messageText = `Раджу трейлер "${movieTitle}" на PeerPlay TV: ${shareUrl}`;
     
-    document.getElementById('inj-share-tg').href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(`Рекомендую "${movieTitle}" на PeerPlay TV! 🚀`)}`;
-    document.getElementById('inj-share-viber').href = `viber://forward?text=${encodeURIComponent(messageText)}`;
+    const tg = document.getElementById('inj-share-tg');
+    const viber = document.getElementById('inj-share-viber');
+    if (tg) tg.href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(`Рекомендую "${movieTitle}" на PeerPlay TV! 🚀`)}`;
+    if (viber) viber.href = `viber://forward?text=${encodeURIComponent(messageText)}`;
 }
 
 function toggleInjectedFav() {
@@ -441,28 +372,33 @@ function updateInjectedFavButton(id) {
     let favorites = JSON.parse(localStorage.getItem('peerplay_favs')) || [];
     const isFav = favorites.some(f => f.id.toString() === id.toString());
     const btn = document.getElementById('inj-fav-btn');
+    if (!btn) return;
     const icon = btn.querySelector('.material-icons');
     const text = document.getElementById('inj-fav-text');
     
     if (isFav) { 
-        icon.textContent = 'bookmark'; 
-        text.textContent = 'В Обраному'; 
+        if (icon) icon.textContent = 'bookmark'; 
+        if (text) text.textContent = 'В Обраному'; 
         btn.style.borderColor = '#ffd600'; 
     } else { 
-        icon.textContent = 'bookmark_border'; 
-        text.textContent = 'В обране'; 
+        if (icon) icon.textContent = 'bookmark_border'; 
+        if (text) text.textContent = 'В обране'; 
         btn.style.borderColor = 'rgba(255,255,255,0.1)'; 
     }
 }
 
 function initInjectedStars(id) {
     const saved = localStorage.getItem(`rating_${id}`) || 0;
-    document.getElementById('inj-rating-status').innerHTML = saved > 0 ? `Оцінка: <span style="color: #ffd600;">${saved} з 5</span>` : "Натисніть для голосування";
+    const status = document.getElementById('inj-rating-status');
+    if (status) status.innerHTML = saved > 0 ? `Оцінка: <span style="color: #ffd600;">${saved} з 5</span>` : "Натисніть для голосування";
+    
     const starsContainer = document.getElementById('inj-stars-rating');
-    starsContainer.querySelectorAll('.star').forEach(star => { 
-        const val = parseInt(star.getAttribute('data-value')); 
-        star.textContent = val <= saved ? 'star' : 'star_border'; 
-    });
+    if (starsContainer) {
+        starsContainer.querySelectorAll('.star').forEach(star => { 
+            const val = parseInt(star.getAttribute('data-value')); 
+            star.textContent = val <= saved ? 'star' : 'star_border'; 
+        });
+    }
 }
 
 function checkInjectedSession() {
@@ -471,6 +407,8 @@ function checkInjectedSession() {
     const textInput = document.getElementById('inj-comment-text');
     const submitBtn = document.querySelector('#inj-comment-form .submit-comment-btn');
     
+    if (!nameInput || !textInput || !submitBtn) return;
+
     if (user) {
         nameInput.value = user;
         textInput.disabled = false;
@@ -485,6 +423,7 @@ function checkInjectedSession() {
 
 async function loadInjectedComments(id) {
     const list = document.getElementById('inj-comments-list');
+    if (!list) return;
     list.innerHTML = '<div style="color:#535763; font-style:italic">Завантаження...</div>';
     if (!galleryDb) return;
     try {
@@ -505,10 +444,11 @@ async function loadInjectedComments(id) {
             item.innerHTML = `<div class="comment-meta" style="display: flex; justify-content: space-between; margin-bottom: 5px;"><span style="font-weight: 700; color: #ffd600;">${escapeInjHtml(c.name)}</span><span style="color: #535763; font-size: 12px;">${c.date}</span></div><p style="color: #b3b7c9; margin: 0;">${escapeInjHtml(c.text)}</p>`;
             list.appendChild(item);
         });
-    } catch (err) { console.error(err); }
+    } catch (err) {}
 }
 
 function escapeInjHtml(str) { 
+    if (!str) return '';
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); 
 }
 
@@ -539,7 +479,5 @@ async function ensureGalleryFirebase() {
         }
         galleryDb = firebase.firestore();
         galleryFirebaseInit = true;
-    } catch (e) {
-        console.error("Firebase помилка:", e);
-    }
+    } catch (e) {}
 }
