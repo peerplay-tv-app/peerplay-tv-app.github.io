@@ -6,10 +6,74 @@
     <title>Завантаження профілю актора... | PeerPlay TV</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- SDK FIREBASE ДЛЯ КОМЕНТАРІВ У МОДАЛЦІ -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    
+    <!-- MAP-ДОВІДНИК ДЛЯ JS-РОУТИНГУ -->
+    <script src="../js/actors-map.js"></script>
+
     <style>
-        body { background-color: #0c0d14; color: #f5f6f9; font-family: sans-serif; padding: 40px; margin: 0; }
-        .actor-card-wrapper { max-width: 800px; margin: 40px auto; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 30px; border-radius: 12px; }
-        @media (max-width: 600px) { body { padding: 15px 10px !important; } .actor-card-wrapper { margin: 10px auto !important; padding: 15px !important; } }
+        body { 
+            background-color: #0c0d14; 
+            color: #f5f6f9; 
+            font-family: sans-serif; 
+            padding: 40px; 
+            margin: 0; 
+        }
+        .actor-card-wrapper { 
+            max-width: 800px; 
+            margin: 40px auto; 
+            background: rgba(255,255,255,0.01); 
+            border: 1px solid rgba(255,255,255,0.03); 
+            padding: 30px; 
+            border-radius: 12px; 
+        }
+        
+        /* Стилі для каруселі "Відомий за" */
+        .known-for-scroll {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: #ffd600 rgba(255, 255, 255, 0.05);
+        }
+        .known-for-scroll::-webkit-scrollbar { height: 6px; }
+        .known-for-scroll::-webkit-scrollbar-thumb { background-color: #ffd600; border-radius: 10px; }
+        .known-for-scroll::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
+        .known-card:hover { transform: scale(1.05); }
+
+        /* Стилі модального вікна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            align-items: center; justify-content: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background-color: #12131c;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            width: 90%; max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        @media (max-width: 600px) { 
+            body { padding: 15px 10px !important; } 
+            .actor-card-wrapper { margin: 10px auto !important; padding: 15px !important; } 
+            h1 { font-size: 28px !important; line-height: 1.2 !important; }
+            h2 { font-size: 19px !important; }
+            .category-tabs { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 6px !important; }
+            .category-tabs .tab-btn { width: 100% !important; text-align: center !important; padding: 8px 4px !important; font-size: 13px !important; }
+        }
     </style>
 </head>
 <body>
@@ -25,25 +89,187 @@
         <h2 style="font-size: 22px; color: #ffd600; margin-bottom: 15px; border-left: 4px solid #ffd600; padding-left: 10px;">Біографія</h2>
         <p id="dyn-bio" style="line-height: 1.7; font-size: 16px; color: #b3b7c9; text-align: justify; white-space: pre-line; margin-bottom: 40px;">Шукаємо інформацію в архівах TMDB...</p>
 
+        <!-- БЛОК ВІДОМИЙ ЗА -->
+        <h2 style="font-size: 22px; color: #ffd600; margin-bottom: 15px; border-left: 4px solid #ffd600; padding-left: 10px;">Відомий (-а) за</h2>
+        <div class="known-for-scroll" id="known-for-scroll" style="margin-bottom: 40px;">
+            <div style="color: #535763; font-style: italic; padding: 10px 0;">Завантаження кращих ролей...</div>
+        </div>
+
+        <!-- ТАБЛИЦЯ НАГОРОД З WIKIDATA -->
+        <h2 style="font-size: 22px; color: #ffd600; margin-bottom: 15px; border-left: 4px solid #ffd600; padding-left: 10px;">Нагороди, премії та номінації</h2>
+        <div style="overflow-x: auto; margin-bottom: 40px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.02);">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid rgba(255, 214, 0, 0.2); background: rgba(255,214,0,0.02);">
+                        <th style="padding: 12px 10px; color: #ffd600; width: 80px;">Рік</th>
+                        <th style="padding: 12px 10px; color: #ffd600;">Назва премії / Категорія</th>
+                        <th style="padding: 12px 10px; color: #ffd600;">Фільм / Проєкт</th>
+                    </tr>
+                </thead>
+                <tbody id="awards-tbody">
+                    <tr><td colspan="3" style="padding: 20px 10px; color: #535763; font-style: italic; text-align: center;">Завантаження даних про премії...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ФІЛЬМОГРАФІЯ З КАТЕГОРІЯМИ ТА ПОСТЕРАМИ -->
+        <h2 style="font-size: 22px; color: #ffd600; margin-bottom: 15px; border-left: 4px solid #ffd600; padding-left: 10px;">Повна фільмографія актора</h2>
+        
+        <div class="category-tabs" style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+            <button class="tab-btn active" onclick="switchActorTab('movies', this)">Фільми</button>
+            <button class="tab-btn" onclick="switchActorTab('series', this)">Серіали</button>
+            <button class="tab-btn" onclick="switchActorTab('cartoons', this)">Мультфільми</button>
+            <button class="tab-btn" onclick="switchActorTab('anim-series', this)">Мультсеріали</button>
+        </div>
+
+        <div id="wrapper-movies" class="actor-film-table-wrapper" style="margin-bottom: 40px;">
+            <div id="grid-movies" class="movie-grid"></div>
+        </div>
+
+        <div id="wrapper-series" class="actor-film-table-wrapper" style="margin-bottom: 40px; display: none;">
+            <div id="grid-series" class="movie-grid"></div>
+        </div>
+
+        <div id="wrapper-cartoons" class="actor-film-table-wrapper" style="margin-bottom: 40px; display: none;">
+            <div id="grid-cartoons" class="movie-grid"></div>
+        </div>
+
+        <div id="wrapper-anim-series" class="actor-film-table-wrapper" style="margin-bottom: 40px; display: none;">
+            <div id="grid-anim-series" class="movie-grid"></div>
+        </div>
+
+        <!-- ГАЛЕРЕЯ -->
         <h2 style="font-size: 22px; color: #ffd600; margin-bottom: 15px; border-left: 4px solid #ffd600; padding-left: 10px;">Галерея та фото актора</h2>
         <div id="actor-media">
             <p style="color: #535763; font-style: italic;">Завантаження офіційних фотографій...</p>
         </div>
     </div>
 
+    <!-- ВБУДОВАНЕ МОДАЛЬНЕ ВІКНО ДЛЯ ПЕРЕГЛЯДУ ТРЕЙЛЕРІВ -->
+    <div id="movie-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeModal()">
+                <span class="material-icons">close</span>
+            </button>
+
+            <div id="modal-hero" class="modal-hero">
+                <div class="modal-hero-overlay"></div>
+                <div class="modal-hero-meta">
+                    <span id="modal-rating" class="rating-badge">0.0</span>
+                    <h2 id="modal-title">Назва фільму</h2>
+                    <p id="modal-year" class="movie-meta">2026</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="action-bar">
+                    <button id="fav-toggle-btn" class="action-action-btn fav-btn" onclick="toggleFavorite()">
+                        <span class="material-icons">bookmark_border</span> <span id="fav-btn-text">В обране</span>
+                    </button>
+                    
+                    <div class="share-wrapper">
+                        <button class="action-action-btn share-btn" onclick="toggleShareDropdown(event)">
+                            <span class="material-icons">share</span> Поділитись фільмом
+                        </button>
+                        <div id="share-dropdown" class="share-dropdown">
+                            <a id="share-tg" href="#" class="share-item tg" target="_blank">Telegram</a>
+                            <a id="share-viber" href="#" class="share-item viber" target="_blank">Viber</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-details-grid">
+                    <div class="modal-poster-side">
+                        <img id="modal-poster" src="" alt="Постер">
+                    </div>
+                    <div class="modal-desc-side">
+                        <div class="expanded-meta-box">
+                            <div class="meta-line">
+                                <span class="meta-label">Жанри:</span>
+                                <span id="modal-genres-list" class="meta-value">Завантаження...</span>
+                            </div>
+                        </div>
+
+                        <h3>Про що сюжет:</h3>
+                        <p id="modal-overview">Опис відсутній.</p>
+                        
+                        <div class="trailer-container">
+                            <h3><span class="material-icons">play_circle</span> Офіційний трейлер</h3>
+                            <div class="video-responsive">
+                                <iframe id="trailer-iframe" src="" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ДИНАМІЧНИЙ ДВИТУН -->
     <script>
+        const API_KEY = 'd81559e3ee0e79ee39f56758f4897fff';
+
+        function switchActorTab(targetId, btn) {
+            document.querySelectorAll('.actor-film-table-wrapper').forEach(t => t.style.display = 'none');
+            const targetEl = document.getElementById('wrapper-' + targetId);
+            if (targetEl) targetEl.style.display = 'block';
+            document.querySelectorAll('.category-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+        }
+
+        function getReleaseYear(item) {
+            const date = item.release_date || item.first_air_date;
+            return date ? date.substring(0, 4) : "0000";
+        }
+
+        function escapeHtml(str) { 
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); 
+        }
+
+        // Генератор сітки постерів
+        function buildGridCards(filmsList) {
+            if (!filmsList || filmsList.length === 0) {
+                return `<p style="color: #535763; font-style: italic; text-align: center; width: 100%; grid-column: 1 / -1; padding: 20px 0;">У цій категорії проєктів не знайдено...</p>`;
+            }
+            
+            return filmsList.map(f => {
+                const title = f.title || f.name || "—";
+                const id = f.id;
+                const type = f.media_type || 'movie';
+                const year = getReleaseYear(f);
+                const yearDisplay = year !== "0000" ? year : "----";
+                const posterUrl = f.poster_path ? `https://image.tmdb.org/t/p/w500${f.poster_path}` : 'https://via.placeholder.com/500x750/0c0d14/ffd600?text=No+Poster';
+                const rating = f.vote_average ? f.vote_average.toFixed(1) : '0.0';
+                
+                const characterHtml = f.character ? `<p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: ${escapeHtml(f.character)}</p>` : '';
+                
+                return `
+                <a href="#" onclick="openMovieModal('${type}', ${id}, event)" class="movie-card" style="text-decoration: none;">
+                    <div class="poster-wrap">
+                        <img src="${posterUrl}" alt="${escapeHtml(title)}" loading="lazy">
+                        <div class="rating-badge">${rating}</div>
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">${escapeHtml(title)}</h3>
+                        <p class="movie-meta">${yearDisplay}</p>
+                        ${characterHtml}
+                    </div>
+                </a>`;
+            }).join('');
+        }
+
         async function loadDynamicActor() {
             const params = new URLSearchParams(window.location.search);
             const actorId = params.get('id');
             if (!actorId) return;
 
-            // Передаємо ID в блок медіа, щоб твій actor-dynamic.js підхопив його
+            // Передаємо ID в блок медіа
             document.getElementById('actor-media').setAttribute('data-tmdb-id', actorId);
 
-            const API_KEY = 'd81559e3ee0e79ee39f56758f4897fff';
             try {
-                // Тягнемо деталі актора
-                const res = await fetch(`https://api.themoviedb.org/3/person/${actorId}?api_key=${API_KEY}&language=uk-UA`);
+                // Один великий запит із деталями, проєктами та фото
+                const res = await fetch(`https://api.themoviedb.org/3/person/${actorId}?api_key=${API_KEY}&language=uk-UA&append_to_response=external_ids,combined_credits,images`);
                 const actor = await res.json();
 
                 document.getElementById('dyn-name').innerText = actor.name || "Невідомий актор";
@@ -51,22 +277,207 @@
                 document.getElementById('dyn-place').innerText = actor.place_of_birth || "Немає даних";
                 document.title = `${actor.name} — Біографія актора | PeerPlay TV`;
 
-                let bio = actor.biography || "Біографія оновлюється...";
-                // Якщо біографія прийшла англійською, шлемо на автопереклад
-                if (bio !== "Біографія оновлюється..." && !/[а-яА-ЯіІїЇєЄґҐ]/.test(bio)) {
-                    const transRes = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=uk&dt=t&q=${encodeURIComponent(bio)}`);
-                    const transData = await transRes.json();
-                    bio = transData[0].map(s => s[0]).join('');
+                // --- 1. ОБРОБКА БІОГРАФІЇ ---
+                let bio = actor.biography ? actor.biography.trim() : "";
+                if (!bio) {
+                    try {
+                        const engRes = await fetch(`https://api.themoviedb.org/3/person/${actorId}?api_key=${API_KEY}&language=en-US`);
+                        const engActor = await engRes.json();
+                        bio = engActor.biography ? engActor.biography.trim() : "";
+                    } catch (e) {}
+                }
+
+                if (!bio) {
+                    bio = "Біографія оновлюється...";
+                } else if (!/[а-яА-ЯіІїЇєЄґҐ]/.test(bio)) {
+                    try {
+                        const textToTranslate = bio.substring(0, 2500);
+                        const transRes = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=uk&dt=t&q=${encodeURIComponent(textToTranslate)}`);
+                        if (transRes.ok) {
+                            const transData = await transRes.json();
+                            if (transData && transData[0]) {
+                                bio = transData[0].map(s => s[0]).join('');
+                            }
+                        }
+                    } catch (e) {}
                 }
                 document.getElementById('dyn-bio').innerText = bio;
 
-                // Запускаємо твій нативний скрипт галереї, якщо він лежить за цим шляхом
-                if (window.initActorMedia) window.initActorMedia(actorId);
+                // --- 2. ФІЛЬТРАЦІЯ ТА РОЗПОДІЛ ПРОЄКТІВ ---
+                const combinedCredits = (actor.combined_credits && actor.combined_credits.cast) ? actor.combined_credits.cast : [];
+                const uniqueProjects = [];
+                const seenIds = new Set();
+                const excludeGenres = [10767, 10764, 10763]; // Ток-шоу, Реаліті, Новини
+
+                combinedCredits.forEach(proj => {
+                    // Фільтруємо ТБ-шоу
+                    if (proj.media_type === 'tv' && proj.genre_ids) {
+                        if (proj.genre_ids.some(id => excludeGenres.includes(id))) return; 
+                    }
+
+                    const uniqueKey = `${proj.media_type || 'movie'}_${proj.id}`;
+                    if (!seenIds.has(uniqueKey)) {
+                        seenIds.add(uniqueKey);
+                        uniqueProjects.push(proj);
+                    }
+                });
+
+                uniqueProjects.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+
+                // "Відомий за" (Топ-8)
+                const topProjects = uniqueProjects.slice(0, 8);
+                const knownForContainer = document.getElementById('known-for-scroll');
+                if (knownForContainer) {
+                    if (topProjects.length > 0) {
+                        knownForContainer.innerHTML = topProjects.map(k => {
+                            const kTitle = k.title || k.name || "—";
+                            const kPoster = k.poster_path ? `https://image.tmdb.org/t/p/w185${k.poster_path}` : 'https://via.placeholder.com/185x278/0c0d14/ffd600?text=No+Poster';
+                            return `
+                            <a href="#" onclick="openMovieModal('${k.media_type || 'movie'}', ${k.id}, event)" class="known-card" style="min-width: 130px; max-width: 130px; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease;">
+                                <img src="${kPoster}" alt="${escapeHtml(kTitle)}" style="width: 100%; height: 195px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #0c0d14;" loading="lazy">
+                                <span style="font-size: 12px; color: #fff; margin-top: 8px; line-height: 1.4; font-weight: 600; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${escapeHtml(kTitle)}</span>
+                            </a>`;
+                        }).join('');
+                    } else {
+                        knownForContainer.innerHTML = '<div style="color: #535763; font-style: italic; padding: 10px 0;">Проєктів у золотому фонді не знайдено...</div>';
+                    }
+                }
+
+                // Розподіляємо по категоріях
+                const moviesList = [];
+                const seriesList = [];
+                const cartoonsList = [];
+                const animSeriesList = [];
+
+                uniqueProjects.forEach(proj => {
+                    const genreIds = proj.genre_ids || [];
+                    if (proj.media_type === 'movie') {
+                        if (genreIds.includes(16)) cartoonsList.push(proj);
+                        else moviesList.push(proj);
+                    } else if (proj.media_type === 'tv') {
+                        if (genreIds.includes(16)) animSeriesList.push(proj);
+                        else seriesList.push(proj);
+                    }
+                });
+
+                const sortByYear = (a, b) => getReleaseYear(b).localeCompare(getReleaseYear(a));
+                moviesList.sort(sortByYear);
+                seriesList.sort(sortByYear);
+                cartoonsList.sort(sortByYear);
+                animSeriesList.sort(sortByYear);
+
+                document.getElementById('grid-movies').innerHTML = buildGridCards(moviesList);
+                document.getElementById('grid-series').innerHTML = buildGridCards(seriesList);
+                document.getElementById('grid-cartoons').innerHTML = buildGridCards(cartoonsList);
+                document.getElementById('grid-anim-series').innerHTML = buildGridCards(animSeriesList);
+
+                // --- 3. НАГОРОДИ (WIKIDATA) ---
+                const wikidataId = actor.external_ids ? actor.external_ids.wikidata_id : null;
+                if (wikidataId) loadWikidataAwards(wikidataId);
+
+                // --- 4. ІНІЦІАЛІЗАЦІЯ ГАЛЕРЕЇ ТА ЗОВНІШНІХ СКРИПТІВ ---
+                if (window.initActorMediaGallery) window.initActorMediaGallery(actorId);
 
             } catch (err) {
                 console.error("Помилка завантаження динамічного профілю:", err);
             }
         }
+
+        async function loadWikidataAwards(wikidataId) {
+            const awardsContainer = document.getElementById('awards-tbody');
+            if (!awardsContainer) return;
+            const sparqlQuery = `
+            SELECT ?awardLabel ?year ?workLabel WHERE {
+              wd:${wikidataId} p:P166 ?statement .
+              ?statement ps:P166 ?award .
+              OPTIONAL { ?statement pq:P585 ?time . BIND(YEAR(?time) AS ?year) }
+              OPTIONAL { ?statement pq:P1686 ?work . }
+              SERVICE wikibase:label { bd:serviceParam wikibase:language "uk,en". }
+            }
+            `;
+
+            try {
+                const res = await fetch('https://query.wikidata.org/sparql?query=' + encodeURIComponent(sparqlQuery) + '&format=json', {
+                    headers: { 'Accept': 'application/json' }
+                });
+                const data = await res.json();
+                const bindings = data.results ? data.results.bindings : [];
+
+                if (bindings && bindings.length > 0) {
+                    let awards = bindings.map(row => ({
+                        name: row.awardLabel ? row.awardLabel.value : "",
+                        year: row.year ? row.year.value : "----",
+                        movie: row.workLabel ? row.workLabel.value : "—"
+                    })).filter(aw => aw.name && !aw.name.startsWith("Q"));
+
+                    awards.sort((a, b) => b.year.localeCompare(a.year));
+
+                    if (awards.length > 0) {
+                        awardsContainer.innerHTML = awards.map(aw => `
+                            <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <td style="padding: 12px 10px; font-weight: 700; color: #ffd600;">${escapeHtml(aw.year)}</td>
+                                <td style="padding: 12px 10px; color: #fff; font-weight: 600;">${escapeHtml(aw.name)}</td>
+                                <td style="padding: 12px 10px; color: #b3b7c9; font-style: italic;">${aw.movie !== "Q" ? escapeHtml(aw.movie) : "—"}</td>
+                            </tr>
+                        `).join('');
+                        return;
+                    }
+                }
+                awardsContainer.innerHTML = '<tr><td colspan="3" style="padding: 20px 10px; color: #535763; font-style: italic; text-align: center;">Нагород та номінацій не знайдено...</td></tr>';
+            } catch (err) {
+                awardsContainer.innerHTML = '<tr><td colspan="3" style="padding: 20px 10px; color: #535763; font-style: italic; text-align: center;">Інформація про номінації оновлюється...</td></tr>';
+            }
+        }
+
+        // --- РОБОТА З МОДАЛЬНИМ ВІКНОМ ---
+        async function openMovieModal(type, id, event) {
+            if (event) event.preventDefault();
+            const modal = document.getElementById('movie-modal');
+            const iframe = document.getElementById('trailer-iframe');
+
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=uk-UA`);
+                const item = await response.json();
+
+                const title = item.title || item.name || "Без назви";
+                const date = item.release_date || item.first_air_date;
+                const year = date ? date.substring(0, 4) : '----';
+
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-year').textContent = `${year} • 4K, українська озвучка`;
+                document.getElementById('modal-rating').textContent = item.vote_average ? item.vote_average.toFixed(1) : '0.0';
+                document.getElementById('modal-overview').textContent = item.overview || "На жаль, опис українською мовою поки відсутній.";
+                document.getElementById('modal-poster').src = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : 'https://via.placeholder.com/500x750/0c0d14/ffd600?text=No+Poster';
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                iframe.src = "";
+
+                let tResponse = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
+                let tData = await tResponse.json();
+                let trailer = tData.results ? tData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer') : null;
+
+                if (!trailer) {
+                    tResponse = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`);
+                    tData = await tResponse.json();
+                    trailer = tData.results ? tData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer') : null;
+                }
+
+                if (trailer) {
+                    iframe.src = `https://www.youtube.com/embed/${trailer.key}`;
+                }
+            } catch (e) {
+                console.error("Помилка модалки:", e);
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('movie-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('trailer-iframe').src = "";
+        }
+
         document.addEventListener("DOMContentLoaded", loadDynamicActor);
     </script>
     <script src="../js/actor-dynamic.js"></script>
