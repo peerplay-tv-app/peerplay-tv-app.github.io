@@ -98,10 +98,6 @@
             <img src="https://image.tmdb.org/t/p/w185/e9XA7L1DwMzCnPZAkr3jOQ3FDcm.jpg" alt="Мис страху" style="width: 100%; height: 195px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #0c0d14;" loading="lazy">
             <span style="font-size: 12px; color: #fff; margin-top: 8px; line-height: 1.4; font-weight: 600; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Мис страху</span>
         </a>
-        <a href="../index.html?tv=512" class="known-card" style="min-width: 130px; max-width: 130px; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease;">
-            <img src="https://image.tmdb.org/t/p/w185/rWQmgNLdyZGIL6Xuo9ImL0Kh6wt.jpg" alt="Third Watch" style="width: 100%; height: 195px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #0c0d14;" loading="lazy">
-            <span style="font-size: 12px; color: #fff; margin-top: 8px; line-height: 1.4; font-weight: 600; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Third Watch</span>
-        </a>
         <a href="../index.html?tv=67116" class="known-card" style="min-width: 130px; max-width: 130px; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease;">
             <img src="https://image.tmdb.org/t/p/w185/b1DgccdpxUZ4oHwwUacW2NhjPFz.jpg" alt="Смертельна зброя" style="width: 100%; height: 195px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #0c0d14;" loading="lazy">
             <span style="font-size: 12px; color: #fff; margin-top: 8px; line-height: 1.4; font-weight: 600; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Смертельна зброя</span>
@@ -109,6 +105,10 @@
         <a href="../index.html?tv=1423" class="known-card" style="min-width: 130px; max-width: 130px; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease;">
             <img src="https://image.tmdb.org/t/p/w185/jpt8nwwAhwLOUhPtFRAfVb1NOln.jpg" alt="Рей Донован" style="width: 100%; height: 195px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #0c0d14;" loading="lazy">
             <span style="font-size: 12px; color: #fff; margin-top: 8px; line-height: 1.4; font-weight: 600; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Рей Донован</span>
+        </a>
+        <a href="../index.html?tv=512" class="known-card" style="min-width: 130px; max-width: 130px; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease;">
+            <img src="https://image.tmdb.org/t/p/w185/rWQmgNLdyZGIL6Xuo9ImL0Kh6wt.jpg" alt="Third Watch" style="width: 100%; height: 195px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #0c0d14;" loading="lazy">
+            <span style="font-size: 12px; color: #fff; margin-top: 8px; line-height: 1.4; font-weight: 600; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Third Watch</span>
         </a>
         <a href="../index.html?tv=4303" class="known-card" style="min-width: 130px; max-width: 130px; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease;">
             <img src="https://image.tmdb.org/t/p/w185/9e6RZ0GLiVMy3jOHtcB6dCIe6F4.jpg" alt="Супермен" style="width: 100%; height: 195px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #0c0d14;" loading="lazy">
@@ -143,786 +143,1069 @@
         <div class="category-tabs" style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
             <button class="tab-btn active" onclick="switchActorTab('movies', this)">Фільми</button>
             <button class="tab-btn" onclick="switchActorTab('series', this)">Серіали</button>
-            <button class="tab-btn" onclick="switchActorTab('shows', this)">ТВ Шоу</button>
             <button class="tab-btn" onclick="switchActorTab('cartoons', this)">Мультфільми</button>
             <button class="tab-btn" onclick="switchActorTab('anim-series', this)">Мультсеріали</button>
         </div>
 
-        <div id="wrapper-movies" class="actor-film-table-wrapper" style="overflow-x: auto; margin-bottom: 40px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.02);">
-            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
-                <thead>
-                    <tr style="border-bottom: 2px solid rgba(255, 214, 0, 0.2); background: rgba(255,214,0,0.02);">
-                        <th style="padding: 12px 10px; color: #ffd600; width: 80px;">Рік</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Назва стрічки</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Роль</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2026</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=662707" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Starbright</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bud</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2023</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=1100795" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Остання справа містера Монка</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Leland Stottlemeyer</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2019</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=506815" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">A Violent Separation</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Ed Quinn</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2019</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=524348" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Звіт</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">John Brennan</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2018</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=351286" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Світ Юрського періоду 2</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Ken Wheatley</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2017</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=393172" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Bottom of the World</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Preacher</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2017</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=398780" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Swing State</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Rouge Holmes</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2017</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=419460" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">A Midsummer Night's Dream</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Theseus</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2017</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=500295" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Down the Fence</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Narrator</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2016</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=332979" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">За кров до перемоги</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Lou Duva</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2016</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=714965" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Dr. Del</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Tanner</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2015</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=256962" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Little Boy</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sam</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2015</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=362862" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Child of Grace</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Chief Edwards</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2014</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=230179" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Велика гра</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">General Underwood</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2014</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=297702" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Подвійна гра</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Lewis</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2014</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=326420" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Копай дві могили</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sheriff Waterhouse</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2013</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=180688" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Deep Dark Canyon</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bloom Towne</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2013</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=159932" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">A Single Shot</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Cecile</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2013</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=207769" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Banshee Chapter</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Thomas Blackburn</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2013</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=225989" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Jimmy</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">James Lee Mitchell</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2010</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=11324" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Острів проклятих</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Warden</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2010</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=108370" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Solartaxi: Around the World with the Sun</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Self - Narrator(voice)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2008</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=17171" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Assassination of Jesse James: Death of an Outlaw</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Narrator (voice)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2007</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=4512" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Як боязкий Роберт Форд убив Джессі Джеймса</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sheriff Timberlake</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2007</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=4982" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Гангстер</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Lou Toback</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2006</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=9792" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Пагорби мають очі</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Big Bob</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2005</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=5834" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The L.A. Riot Spectacular</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Tom Saltine</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2005</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=1904" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Мемуари гейші</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Colonel Derricks</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2004</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=14462" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Манжурський кандидат</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Colonel Howard</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2004</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=10740" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Народження</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Mr. Conte</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2003</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=4997" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Wonderland</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sam Nico</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2002</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=13440" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Правда про Чарлі</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Emil Zadapec</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2001</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=9799" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Форсаж</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sgt. Tanner</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2001</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=9397" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Еволюція</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">General Russell Woodman</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2001</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=401439" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Inside the Labyrinth: The Making of 'The Silence of the Lambs'</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Self</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2001</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=8489" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Алі</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Joe Smiley</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2001</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=10866" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Нічого собі поїздочка</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Rusty Nail (voice) (uncredited)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2000</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=194529" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Harlan County War</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Silas Kincaid</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1999</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=8487" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Дикий, дикий Вест</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">General 'Bloodbath' McGrath</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1998</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=163679" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">You Can Thank Me Later</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Eli Cooperberg</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1997</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=9770" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Божевільне місто</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Lemke</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1997</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=9574" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Флаббер</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Wesson</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1997</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=10871" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Американські гірки</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Deputy Nate Booker</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1997</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=113141" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Ellen Foster</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bill Hammond</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1996</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=210691" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Розумник</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Paul Callendar</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1996</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=14469" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Куля</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Louis Stein</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1995</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=949" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Сутичка</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bosko</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1995</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=13559" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Mangler</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Officer John Hunton</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1995</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=97406" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Georgia</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Jake</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1994</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=268805" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Todo cambia</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Vince</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1993</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=10413" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Нікуди тікати</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Mr. Dunston</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1993</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=20333" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Last Outlaw</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Potts</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1993</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=20435" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Потяг смерті</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Alex Tierney</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1993</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=212083" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Broken Promises: Taking Emily Back</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Gary Ward</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1993</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=204666" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Paint Job</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Kenny the D.J. (uncredited)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1991</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=274" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Мовчання ягнят</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Jame Gumb</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1991</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=707984" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Murder in High Places</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Carson Russell</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1991</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=124269" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Dead and Alive: The Race for Gus Farace</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Charles Rose</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1990</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=32035" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Усе про кохання</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Frederick King / James McGraw</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1989</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=27418" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Найближчий родич</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Willy Simpson</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1989</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=292105" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Fulfillment of Mary Gray</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Jonathan</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1988</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=31618" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Зраджений</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Wes</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1987</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=40962" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Будяк</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Pocono Pete</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1986</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=1323489" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Crime Story: Pilot</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Frank Holman</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1985</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=966894" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Two Fathers' Justice</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bennett</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1984</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=504705" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Killing Floor</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Policeman</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1983</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=238247" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Through Naked Eyes</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Patrolman</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">----</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=803907" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Король Лір</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Kent</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">----</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?movie=1693881" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">I Passed This Way</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;"></td>
-        </tr></tbody>
-            </table>
+        <div id="wrapper-movies" class="actor-film-table-wrapper" style="margin-bottom: 40px;">
+            <div class="movie-grid">
+        <a href="../index.html?movie=662707" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/m1Zl07DNYeSyNcz9hf8hDsS2oB5.jpg" alt="Starbright" loading="lazy">
+                <div class="rating-badge">5.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Starbright</h3>
+                <p class="movie-meta">2026</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bud</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=1100795" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/UZP0jnQ4Ux3Niz7FD3WXOyfZR8.jpg" alt="Остання справа містера Монка" loading="lazy">
+                <div class="rating-badge">6.8</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Остання справа містера Монка</h3>
+                <p class="movie-meta">2023</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Leland Stottlemeyer</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=506815" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/yNlLMfrfPExwqLZSOFbqmkawIpg.jpg" alt="A Violent Separation" loading="lazy">
+                <div class="rating-badge">7.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">A Violent Separation</h3>
+                <p class="movie-meta">2019</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Ed Quinn</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=524348" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/sG5NI6TMNR9ftOdTIXmG0hrBYSY.jpg" alt="Звіт" loading="lazy">
+                <div class="rating-badge">7.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Звіт</h3>
+                <p class="movie-meta">2019</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: John Brennan</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=351286" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/5OaKiCjqTobA0hHJWH1Vy6ZQEuv.jpg" alt="Світ Юрського періоду 2" loading="lazy">
+                <div class="rating-badge">6.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Світ Юрського періоду 2</h3>
+                <p class="movie-meta">2018</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Ken Wheatley</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=393172" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/wUgO5MVsdFIqwvuako55rnfoM1Y.jpg" alt="Bottom of the World" loading="lazy">
+                <div class="rating-badge">5.3</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Bottom of the World</h3>
+                <p class="movie-meta">2017</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Preacher</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=398780" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/lb1LDus4hIuONUqKp0Ik85DDcUT.jpg" alt="Swing State" loading="lazy">
+                <div class="rating-badge">4.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Swing State</h3>
+                <p class="movie-meta">2017</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Rouge Holmes</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=419460" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/xM12nbuaX1ycKQEv6hMgBpw1H4p.jpg" alt="A Midsummer Night's Dream" loading="lazy">
+                <div class="rating-badge">4.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">A Midsummer Night's Dream</h3>
+                <p class="movie-meta">2017</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Theseus</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=332979" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/f5PYyGfpYKOdmHMdG1Q0r63TOeG.jpg" alt="За кров до перемоги" loading="lazy">
+                <div class="rating-badge">6.8</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">За кров до перемоги</h3>
+                <p class="movie-meta">2016</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Lou Duva</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=714965" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/oN6Hugelx7c2PIxhoKVCI12ywiX.jpg" alt="Dr. Del" loading="lazy">
+                <div class="rating-badge">0.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Dr. Del</h3>
+                <p class="movie-meta">2016</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Tanner</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=256962" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/lAU9pgq3niI6sFemcKm4FGGmrnW.jpg" alt="Little Boy" loading="lazy">
+                <div class="rating-badge">7.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Little Boy</h3>
+                <p class="movie-meta">2015</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sam</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=362862" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/kUUzbquKsGioT30OnNEhjMIx6hz.jpg" alt="Child of Grace" loading="lazy">
+                <div class="rating-badge">6.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Child of Grace</h3>
+                <p class="movie-meta">2015</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Chief Edwards</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=230179" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/78p4ayuBbisPwDcOPjkYEOJGwWE.jpg" alt="Велика гра" loading="lazy">
+                <div class="rating-badge">5.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Велика гра</h3>
+                <p class="movie-meta">2014</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: General Underwood</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=297702" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/ri9kSHO5TjoXec7HYh3Blfge1Oy.jpg" alt="Подвійна гра" loading="lazy">
+                <div class="rating-badge">4.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Подвійна гра</h3>
+                <p class="movie-meta">2014</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Lewis</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=326420" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/5Nyhc5JrWiRMuDm4iDIs1PDqzss.jpg" alt="Копай дві могили" loading="lazy">
+                <div class="rating-badge">5.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Копай дві могили</h3>
+                <p class="movie-meta">2014</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sheriff Waterhouse</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=180688" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/lY1sx46thaFbZElgt9ZnmCWr3mY.jpg" alt="Deep Dark Canyon" loading="lazy">
+                <div class="rating-badge">6.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Deep Dark Canyon</h3>
+                <p class="movie-meta">2013</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bloom Towne</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=159932" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/zRGBGjdeGf12Pmalr1adT9IpoId.jpg" alt="A Single Shot" loading="lazy">
+                <div class="rating-badge">5.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">A Single Shot</h3>
+                <p class="movie-meta">2013</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Cecile</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=207769" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/nyXKB77RrItfUsAcgoIlXmUfged.jpg" alt="Banshee Chapter" loading="lazy">
+                <div class="rating-badge">5.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Banshee Chapter</h3>
+                <p class="movie-meta">2013</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Thomas Blackburn</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=225989" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/8C8fPFuDaV9bnN6rM9h173voQ1a.jpg" alt="Jimmy" loading="lazy">
+                <div class="rating-badge">6.9</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Jimmy</h3>
+                <p class="movie-meta">2013</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: James Lee Mitchell</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=11324" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/1bonPWwpKbeYUj09dvDMoNfg0jl.jpg" alt="Острів проклятих" loading="lazy">
+                <div class="rating-badge">8.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Острів проклятих</h3>
+                <p class="movie-meta">2010</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Warden</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=4512" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/aYcP8GPHehxbhyZbsQ6oRP1ZrmT.jpg" alt="Як боязкий Роберт Форд убив Джессі Джеймса" loading="lazy">
+                <div class="rating-badge">7.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Як боязкий Роберт Форд убив Джессі Джеймса</h3>
+                <p class="movie-meta">2007</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sheriff Timberlake</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=4982" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/8zZyMSOX9xMWwdZpoA4LNIPrRIE.jpg" alt="Гангстер" loading="lazy">
+                <div class="rating-badge">7.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Гангстер</h3>
+                <p class="movie-meta">2007</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Lou Toback</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=9792" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/dNW6Kr1yTuFx0ilt6PQphyM43zH.jpg" alt="Пагорби мають очі" loading="lazy">
+                <div class="rating-badge">6.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Пагорби мають очі</h3>
+                <p class="movie-meta">2006</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Big Bob</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=5834" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/nsj6faAGp4n3mXinn8ClfiYJG5S.jpg" alt="The L.A. Riot Spectacular" loading="lazy">
+                <div class="rating-badge">3.3</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">The L.A. Riot Spectacular</h3>
+                <p class="movie-meta">2005</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Tom Saltine</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=1904" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/jAidpYVDyGHp3XSR4Q2E6V9zvJw.jpg" alt="Мемуари гейші" loading="lazy">
+                <div class="rating-badge">7.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Мемуари гейші</h3>
+                <p class="movie-meta">2005</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Colonel Derricks</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=14462" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/qOxKpCpaqVonA6xyE1gLocHRtAE.jpg" alt="Манжурський кандидат" loading="lazy">
+                <div class="rating-badge">6.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Манжурський кандидат</h3>
+                <p class="movie-meta">2004</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Colonel Howard</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=10740" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/mZhTgxMlCDRp6Sf2m5qaShxtiRo.jpg" alt="Народження" loading="lazy">
+                <div class="rating-badge">6.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Народження</h3>
+                <p class="movie-meta">2004</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Mr. Conte</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=4997" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/mfG8S7D4rYeVqvTzjc3D36PAK3R.jpg" alt="Wonderland" loading="lazy">
+                <div class="rating-badge">6.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Wonderland</h3>
+                <p class="movie-meta">2003</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sam Nico</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=13440" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/jhKPsst93iYqi73C4p69YpFpxzM.jpg" alt="Правда про Чарлі" loading="lazy">
+                <div class="rating-badge">4.9</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Правда про Чарлі</h3>
+                <p class="movie-meta">2002</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Emil Zadapec</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=9799" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/fEWOHIgw8Sxyjs0C3sxJWsWPoh6.jpg" alt="Форсаж" loading="lazy">
+                <div class="rating-badge">7.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Форсаж</h3>
+                <p class="movie-meta">2001</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sgt. Tanner</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=9397" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/tDkQvIxc2w5cwpjjlVhExu5vea7.jpg" alt="Еволюція" loading="lazy">
+                <div class="rating-badge">6.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Еволюція</h3>
+                <p class="movie-meta">2001</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: General Russell Woodman</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=8489" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/uvDJDRiol3KRIsDJpqGzRaBOVDz.jpg" alt="Алі" loading="lazy">
+                <div class="rating-badge">6.8</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Алі</h3>
+                <p class="movie-meta">2001</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Joe Smiley</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=10866" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/vEgwxDIko7ywdpZNqeDr7NWSigY.jpg" alt="Нічого собі поїздочка" loading="lazy">
+                <div class="rating-badge">6.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Нічого собі поїздочка</h3>
+                <p class="movie-meta">2001</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Rusty Nail (voice) (uncredited)</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=194529" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/nPnnxUovPgBr7eol65e4dPpEN5M.jpg" alt="Harlan County War" loading="lazy">
+                <div class="rating-badge">7.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Harlan County War</h3>
+                <p class="movie-meta">2000</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Silas Kincaid</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=8487" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/kFl6LYucOJo8HzuY8qxl9xXo3sW.jpg" alt="Дикий, дикий Вест" loading="lazy">
+                <div class="rating-badge">5.3</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Дикий, дикий Вест</h3>
+                <p class="movie-meta">1999</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: General 'Bloodbath' McGrath</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=163679" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/4IYHLkVdoWmiuU8vajma4yEfJX0.jpg" alt="You Can Thank Me Later" loading="lazy">
+                <div class="rating-badge">5.8</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">You Can Thank Me Later</h3>
+                <p class="movie-meta">1998</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Eli Cooperberg</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=9770" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/wXb9KGqxyrAHNygRRI1HW1BhcU.jpg" alt="Божевільне місто" loading="lazy">
+                <div class="rating-badge">6.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Божевільне місто</h3>
+                <p class="movie-meta">1997</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Lemke</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=9574" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/bnKvk04icAyCO1KjqhsaEXBO9aJ.jpg" alt="Флаббер" loading="lazy">
+                <div class="rating-badge">5.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Флаббер</h3>
+                <p class="movie-meta">1997</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Wesson</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=10871" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/3v4nX475G97Vd8XCapTKQ7NTqMs.jpg" alt="Американські гірки" loading="lazy">
+                <div class="rating-badge">6.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Американські гірки</h3>
+                <p class="movie-meta">1997</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Deputy Nate Booker</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=113141" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/iv4tahnFKwqXdWSll0ZbnyxPuWT.jpg" alt="Ellen Foster" loading="lazy">
+                <div class="rating-badge">6.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Ellen Foster</h3>
+                <p class="movie-meta">1997</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bill Hammond</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=210691" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/1zBjyYdE2J5jfvQHiVNVoClkHfo.jpg" alt="Розумник" loading="lazy">
+                <div class="rating-badge">5.9</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Розумник</h3>
+                <p class="movie-meta">1996</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Paul Callendar</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=14469" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/9uVQEJ9WRYrAcXM2h4aX9MbNevy.jpg" alt="Куля" loading="lazy">
+                <div class="rating-badge">6.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Куля</h3>
+                <p class="movie-meta">1996</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Louis Stein</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=949" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/qT3rcAX7dV457IpBXHzUBFeOExe.jpg" alt="Сутичка" loading="lazy">
+                <div class="rating-badge">7.9</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Сутичка</h3>
+                <p class="movie-meta">1995</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bosko</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=13559" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/vwRZOUzIX17luLM69sCC9meM9od.jpg" alt="The Mangler" loading="lazy">
+                <div class="rating-badge">4.9</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">The Mangler</h3>
+                <p class="movie-meta">1995</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Officer John Hunton</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=97406" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/uXjfK404xo7SiVlFcAoRyaFqXR4.jpg" alt="Georgia" loading="lazy">
+                <div class="rating-badge">5.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Georgia</h3>
+                <p class="movie-meta">1995</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Jake</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=268805" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/dl9YIh0iiI667fZ7w7MPkyFwbch.jpg" alt="Todo cambia" loading="lazy">
+                <div class="rating-badge">10.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Todo cambia</h3>
+                <p class="movie-meta">1994</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Vince</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=10413" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/iVQC4dQkSrL8f3E2yQitXoiSPYr.jpg" alt="Нікуди тікати" loading="lazy">
+                <div class="rating-badge">6.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Нікуди тікати</h3>
+                <p class="movie-meta">1993</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Mr. Dunston</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=20333" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/pnLWFKZSvH1fNtjSCdgGP2WOqRu.jpg" alt="The Last Outlaw" loading="lazy">
+                <div class="rating-badge">5.4</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">The Last Outlaw</h3>
+                <p class="movie-meta">1993</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Potts</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=20435" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/uiuzRI1tMqySkveAa9kB1QB9VDA.jpg" alt="Потяг смерті" loading="lazy">
+                <div class="rating-badge">5.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Потяг смерті</h3>
+                <p class="movie-meta">1993</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Alex Tierney</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=212083" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/8k2pvaliMb6kn2LFkOdYjO1oTtn.jpg" alt="Broken Promises: Taking Emily Back" loading="lazy">
+                <div class="rating-badge">5.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Broken Promises: Taking Emily Back</h3>
+                <p class="movie-meta">1993</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Gary Ward</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=204666" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/3o8WGW9L07n1qxIUk0YVD4VGJg7.jpg" alt="The Paint Job" loading="lazy">
+                <div class="rating-badge">4.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">The Paint Job</h3>
+                <p class="movie-meta">1993</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Kenny the D.J. (uncredited)</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=274" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/dcftGZ4stJnYwxB8lkbQYI2beqw.jpg" alt="Мовчання ягнят" loading="lazy">
+                <div class="rating-badge">8.3</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Мовчання ягнят</h3>
+                <p class="movie-meta">1991</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Jame Gumb</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=707984" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/dWZpMKUJs4cj7Ismx0uHDpexeMh.jpg" alt="Murder in High Places" loading="lazy">
+                <div class="rating-badge">4.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Murder in High Places</h3>
+                <p class="movie-meta">1991</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Carson Russell</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=124269" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/xLr7YOqq3R1LPhyJKhUR7PQafDG.jpg" alt="Dead and Alive: The Race for Gus Farace" loading="lazy">
+                <div class="rating-badge">5.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Dead and Alive: The Race for Gus Farace</h3>
+                <p class="movie-meta">1991</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Charles Rose</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=32035" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/A2l54MDhZjc2aD6sQPB7IeRAJjt.jpg" alt="Усе про кохання" loading="lazy">
+                <div class="rating-badge">5.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Усе про кохання</h3>
+                <p class="movie-meta">1990</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Frederick King / James McGraw</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=27418" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/ieM9upg9O4agtodEvlZIiuNKZsN.jpg" alt="Найближчий родич" loading="lazy">
+                <div class="rating-badge">5.9</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Найближчий родич</h3>
+                <p class="movie-meta">1989</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Willy Simpson</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=292105" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/s4FZq73sX9Rt8dF8tmLf1eRFh5S.jpg" alt="The Fulfillment of Mary Gray" loading="lazy">
+                <div class="rating-badge">5.8</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">The Fulfillment of Mary Gray</h3>
+                <p class="movie-meta">1989</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Jonathan</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=31618" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/eilzKLdafTPGZTq9BhHlsjM70JG.jpg" alt="Зраджений" loading="lazy">
+                <div class="rating-badge">6.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Зраджений</h3>
+                <p class="movie-meta">1988</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Wes</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=40962" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/6dTeJzbYOGZhMd8EJly7L0uPDql.jpg" alt="Будяк" loading="lazy">
+                <div class="rating-badge">6.3</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Будяк</h3>
+                <p class="movie-meta">1987</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Pocono Pete</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=1323489" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/q0Gi5asUzRNxsie0LZ1ucHd86Gg.jpg" alt="Crime Story: Pilot" loading="lazy">
+                <div class="rating-badge">7.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Crime Story: Pilot</h3>
+                <p class="movie-meta">1986</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Frank Holman</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=966894" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/fWnYdnPtwzDkJ8VEYSO8RE32IrG.jpg" alt="Two Fathers' Justice" loading="lazy">
+                <div class="rating-badge">7.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Two Fathers' Justice</h3>
+                <p class="movie-meta">1985</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bennett</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=504705" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/oqMNmmFBNDK9BxdkePT56MbkmtL.jpg" alt="The Killing Floor" loading="lazy">
+                <div class="rating-badge">8.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">The Killing Floor</h3>
+                <p class="movie-meta">1984</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Policeman</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=238247" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/7GoELkXCkFmX1NVL747zm4rerHp.jpg" alt="Through Naked Eyes" loading="lazy">
+                <div class="rating-badge">4.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Through Naked Eyes</h3>
+                <p class="movie-meta">1983</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Patrolman</p>
+            </div>
+        </a>
+        <a href="../index.html?movie=803907" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/vUu8zJZrobMRFwvmTaZ43GCu5GB.jpg" alt="Король Лір" loading="lazy">
+                <div class="rating-badge">0.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Король Лір</h3>
+                <p class="movie-meta">----</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Kent</p>
+            </div>
+        </a></div>
         </div>
 
-        <div id="wrapper-series" class="actor-film-table-wrapper" style="overflow-x: auto; margin-bottom: 40px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); display: none;">
-            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
-                <thead>
-                    <tr style="border-bottom: 2px solid rgba(255, 214, 0, 0.2); background: rgba(255,214,0,0.02);">
-                        <th style="padding: 12px 10px; color: #ffd600; width: 80px;">Рік</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Назва серіалу</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Роль</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2026</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=259265" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Скоро трапиться щось страшне</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Boris</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2026</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=277439" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Мис страху</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Brandon Devereaux</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2023</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=203554" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Прекрасні дрібниці</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Gene</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2023</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=207863" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Відьми Мейфер</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Julien Mayfair</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2020</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=100010" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Big Sky</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Horst Kleinsasser</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2020</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=103404" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Peacock Presents: The At-Home Variety Show Featuring Seth MacFarlane</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Captain Leland Stottlemeyer</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2019</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=80703" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Стати богом у Центральній Флориді</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Obie Garbeau II</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2018</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=71769" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Алієніст</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Thomas Byrnes</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2016</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=67116" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Смертельна зброя</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Ned Brower</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2015</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=63023" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Spoils Before Dying</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Gerhart Moll</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2013</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=47141" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Bridge</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Lieutenant Hank Wade</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2013</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=1423" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Рей Донован</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bill Primm</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2012</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=32727" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Luck</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Isadore Cohen</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2011</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=1401" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Пекло на колесах</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Daniel Johnson</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2002</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=1695" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Монк</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Leland Stottlemeyer</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2000</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=14842" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Wonderland</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Robert Banger</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1999</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=512" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Third Watch</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Brian O'Malley</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1998</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=3556" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Із Землі на Місяць</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Alan Shepard</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1998</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=31010" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Мобі Дік</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Starbuck</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1995</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=10494" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Nowhere Man</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Dave 'Eddie' Powers</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1986</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=2966" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Кримінальна історія</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Frank Holman</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1986</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=2966" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Кримінальна історія</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Jack Holman</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1982</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=10282" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">American Playhouse</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Policeman</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1951</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=4779" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Hallmark Hall of Fame</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bill Foster</td>
-        </tr></tbody>
-            </table>
+        <div id="wrapper-series" class="actor-film-table-wrapper" style="margin-bottom: 40px; display: none;">
+            <div class="movie-grid">
+        <a href="../index.html?tv=259265" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/fZdSWRxaNQtIqmGTG5E0eg0vcSZ.jpg" alt="Скоро трапиться щось страшне" loading="lazy">
+                <div class="rating-badge">6.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Скоро трапиться щось страшне</h3>
+                <p class="movie-meta">2026</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Boris</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=277439" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/e9XA7L1DwMzCnPZAkr3jOQ3FDcm.jpg" alt="Мис страху" loading="lazy">
+                <div class="rating-badge">7.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Мис страху</h3>
+                <p class="movie-meta">2026</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Brandon Devereaux</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=203554" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/s8azffnsMN5MTctwlb9cU2SzTvF.jpg" alt="Прекрасні дрібниці" loading="lazy">
+                <div class="rating-badge">6.8</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Прекрасні дрібниці</h3>
+                <p class="movie-meta">2023</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Gene</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=207863" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/kl3vj8tQgGiA63zeodYjwPngIzB.jpg" alt="Відьми Мейфер" loading="lazy">
+                <div class="rating-badge">7.3</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Відьми Мейфер</h3>
+                <p class="movie-meta">2023</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Julien Mayfair</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=100010" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/4CUK42x0TvcWvuRXfjAFQlCeRdf.jpg" alt="Big Sky" loading="lazy">
+                <div class="rating-badge">7.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Big Sky</h3>
+                <p class="movie-meta">2020</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Horst Kleinsasser</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=103404" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/6T1EWnjfOV8al1DuWTXyYT9Dyfr.jpg" alt="Peacock Presents: The At-Home Variety Show Featuring Seth MacFarlane" loading="lazy">
+                <div class="rating-badge">5.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Peacock Presents: The At-Home Variety Show Featuring Seth MacFarlane</h3>
+                <p class="movie-meta">2020</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Captain Leland Stottlemeyer</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=80703" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/aH2XKRDtyY3V2ySbrEPwytiYEut.jpg" alt="Стати богом у Центральній Флориді" loading="lazy">
+                <div class="rating-badge">6.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Стати богом у Центральній Флориді</h3>
+                <p class="movie-meta">2019</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Obie Garbeau II</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=71769" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/kQA1x4pqKUAUxzYb8R97mpWwzCI.jpg" alt="Алієніст" loading="lazy">
+                <div class="rating-badge">7.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Алієніст</h3>
+                <p class="movie-meta">2018</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Thomas Byrnes</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=67116" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/b1DgccdpxUZ4oHwwUacW2NhjPFz.jpg" alt="Смертельна зброя" loading="lazy">
+                <div class="rating-badge">7.3</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Смертельна зброя</h3>
+                <p class="movie-meta">2016</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Ned Brower</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=63023" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/AhIFPJBUge7H8gAO1JMyZZLg3tt.jpg" alt="The Spoils Before Dying" loading="lazy">
+                <div class="rating-badge">6.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">The Spoils Before Dying</h3>
+                <p class="movie-meta">2015</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Gerhart Moll</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=47141" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/iV4I9p69BnXo9W3sQYKWwIjmPTh.jpg" alt="The Bridge" loading="lazy">
+                <div class="rating-badge">6.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">The Bridge</h3>
+                <p class="movie-meta">2013</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Lieutenant Hank Wade</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=1423" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/jpt8nwwAhwLOUhPtFRAfVb1NOln.jpg" alt="Рей Донован" loading="lazy">
+                <div class="rating-badge">7.5</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Рей Донован</h3>
+                <p class="movie-meta">2013</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bill Primm</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=32727" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/ngiaLLLpGeRjww6ZagjZrg9elcg.jpg" alt="Luck" loading="lazy">
+                <div class="rating-badge">6.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Luck</h3>
+                <p class="movie-meta">2012</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Isadore Cohen</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=1401" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/dCcYrjFWLJbnnHvaxsTZHUAoq5n.jpg" alt="Пекло на колесах" loading="lazy">
+                <div class="rating-badge">7.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Пекло на колесах</h3>
+                <p class="movie-meta">2011</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Daniel Johnson</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=1695" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/3axGMbUecXXOPSeG47v2i9wK5y5.jpg" alt="Монк" loading="lazy">
+                <div class="rating-badge">7.9</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Монк</h3>
+                <p class="movie-meta">2002</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Leland Stottlemeyer</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=14842" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/7xOTfHQJ5LijFMa79k99E1t6hyP.jpg" alt="Wonderland" loading="lazy">
+                <div class="rating-badge">7.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Wonderland</h3>
+                <p class="movie-meta">2000</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Robert Banger</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=512" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/rWQmgNLdyZGIL6Xuo9ImL0Kh6wt.jpg" alt="Third Watch" loading="lazy">
+                <div class="rating-badge">7.9</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Third Watch</h3>
+                <p class="movie-meta">1999</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Brian O'Malley</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=3556" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/sSnYvoVT2PYWJbF0aWdUFvLqKhR.jpg" alt="Із Землі на Місяць" loading="lazy">
+                <div class="rating-badge">8.1</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Із Землі на Місяць</h3>
+                <p class="movie-meta">1998</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Alan Shepard</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=31010" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/fOiEbZuo7KZQhcCbn5EQ4wPsdTN.jpg" alt="Мобі Дік" loading="lazy">
+                <div class="rating-badge">6.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Мобі Дік</h3>
+                <p class="movie-meta">1998</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Starbuck</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=10494" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/bMQ0IDjUs7tLf9XefBQGZ7AkvpP.jpg" alt="Nowhere Man" loading="lazy">
+                <div class="rating-badge">7.8</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Nowhere Man</h3>
+                <p class="movie-meta">1995</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Dave 'Eddie' Powers</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=2966" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/he4iKKlgXnT7kPAjvYFeREiHPmj.jpg" alt="Кримінальна історія" loading="lazy">
+                <div class="rating-badge">8.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Кримінальна історія</h3>
+                <p class="movie-meta">1986</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Frank Holman</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=2966" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/he4iKKlgXnT7kPAjvYFeREiHPmj.jpg" alt="Кримінальна історія" loading="lazy">
+                <div class="rating-badge">8.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Кримінальна історія</h3>
+                <p class="movie-meta">1986</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Jack Holman</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=10282" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/34LLeInneWvMyIHcCpDCrkOxDe7.jpg" alt="American Playhouse" loading="lazy">
+                <div class="rating-badge">6.6</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">American Playhouse</h3>
+                <p class="movie-meta">1982</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Policeman</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=4779" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/dSeAHZYT2JLidmA9hfH15Ae3NPk.jpg" alt="Hallmark Hall of Fame" loading="lazy">
+                <div class="rating-badge">8.8</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Hallmark Hall of Fame</h3>
+                <p class="movie-meta">1951</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bill Foster</p>
+            </div>
+        </a></div>
         </div>
 
-        <div id="wrapper-shows" class="actor-film-table-wrapper" style="overflow-x: auto; margin-bottom: 40px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); display: none;">
-            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
-                <thead>
-                    <tr style="border-bottom: 2px solid rgba(255, 214, 0, 0.2); background: rgba(255,214,0,0.02);">
-                        <th style="padding: 12px 10px; color: #ffd600; width: 80px;">Рік</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Назва телешоу / програми</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Роль</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2002</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=499" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">The Osbournes</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Self</td>
-        </tr></tbody>
-            </table>
+        <div id="wrapper-cartoons" class="actor-film-table-wrapper" style="margin-bottom: 40px; display: none;">
+            <div class="movie-grid"><p style="color: #535763; font-style: italic; text-align: center; width: 100%; grid-column: 1 / -1;">У цій категорії проєктів не знайдено...</p></div>
         </div>
 
-        <div id="wrapper-cartoons" class="actor-film-table-wrapper" style="overflow-x: auto; margin-bottom: 40px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); display: none;">
-            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
-                <thead>
-                    <tr style="border-bottom: 2px solid rgba(255, 214, 0, 0.2); background: rgba(255,214,0,0.02);">
-                        <th style="padding: 12px 10px; color: #ffd600; width: 80px;">Рік</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Назва мультфільму</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Роль</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr>
-            <td colspan="3" style="padding: 20px 10px; color: #535763; font-style: italic; text-align: center;">
-                У цій категорії проєктів не знайдено...
-            </td>
-        </tr></tbody>
-            </table>
-        </div>
-
-        <div id="wrapper-anim-series" class="actor-film-table-wrapper" style="overflow-x: auto; margin-bottom: 40px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); display: none;">
-            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
-                <thead>
-                    <tr style="border-bottom: 2px solid rgba(255, 214, 0, 0.2); background: rgba(255,214,0,0.02);">
-                        <th style="padding: 12px 10px; color: #ffd600; width: 80px;">Рік</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Назва мультсеріалу</th>
-                        <th style="padding: 12px 10px; color: #ffd600;">Роль</th>
-                    </tr>
-                </thead>
-                <tbody>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2004</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=84200" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Ліга Справедливості Без меж</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sinestro (voice)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2001</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=1618" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Ліга Справедливості</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bulldozer (voice)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2001</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=1618" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Ліга Справедливості</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Bulldozer / Nazi Lieutenant (voice)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2001</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=1618" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Ліга Справедливості</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sinestro (voice)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">2000</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=1487" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Static Shock</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sinestro (voice)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1996</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=4303" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Супермен</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Karkull (voice)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-            <td style="padding: 12px 10px; font-weight: 700; color: #7e8494;">1996</td>
-            <td style="padding: 12px 10px;">
-                <a href="../index.html?tv=4303" class="actor-modal-link" style="color: #ffd600; text-decoration: none; font-weight: 600;">Супермен</a>
-            </td>
-            <td style="padding: 12px 10px; color: #b3b7c9;">Sinestro (voice)</td>
-        </tr></tbody>
-            </table>
+        <div id="wrapper-anim-series" class="actor-film-table-wrapper" style="margin-bottom: 40px; display: none;">
+            <div class="movie-grid">
+        <a href="../index.html?tv=84200" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/piujmR4bp7B49hIpnizYu8UjVWy.jpg" alt="Ліга Справедливості Без меж" loading="lazy">
+                <div class="rating-badge">8.3</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Ліга Справедливості Без меж</h3>
+                <p class="movie-meta">2004</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sinestro (voice)</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=1618" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/AiQZHVdKGsWr9PU9dYTF8ivs1pz.jpg" alt="Ліга Справедливості" loading="lazy">
+                <div class="rating-badge">8.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Ліга Справедливості</h3>
+                <p class="movie-meta">2001</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bulldozer (voice)</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=1618" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/AiQZHVdKGsWr9PU9dYTF8ivs1pz.jpg" alt="Ліга Справедливості" loading="lazy">
+                <div class="rating-badge">8.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Ліга Справедливості</h3>
+                <p class="movie-meta">2001</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Bulldozer / Nazi Lieutenant (voice)</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=1618" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/AiQZHVdKGsWr9PU9dYTF8ivs1pz.jpg" alt="Ліга Справедливості" loading="lazy">
+                <div class="rating-badge">8.2</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Ліга Справедливості</h3>
+                <p class="movie-meta">2001</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sinestro (voice)</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=1487" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/c4bMyE2SZv9B6rS0Anvlwej14R1.jpg" alt="Static Shock" loading="lazy">
+                <div class="rating-badge">8.0</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Static Shock</h3>
+                <p class="movie-meta">2000</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sinestro (voice)</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=4303" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/9e6RZ0GLiVMy3jOHtcB6dCIe6F4.jpg" alt="Супермен" loading="lazy">
+                <div class="rating-badge">7.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Супермен</h3>
+                <p class="movie-meta">1996</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Sinestro (voice)</p>
+            </div>
+        </a>
+        <a href="../index.html?tv=4303" class="movie-card" style="text-decoration: none;">
+            <div class="poster-wrap">
+                <img src="https://image.tmdb.org/t/p/w500/9e6RZ0GLiVMy3jOHtcB6dCIe6F4.jpg" alt="Супермен" loading="lazy">
+                <div class="rating-badge">7.7</div>
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Супермен</h3>
+                <p class="movie-meta">1996</p>
+                <p style="font-size: 13px; color: #ffd600; margin-top: 5px; line-height: 1.2;">Роль: Karkull (voice)</p>
+            </div>
+        </a></div>
         </div>
 
         <h2 style="font-size: 22px; color: #ffd600; margin-bottom: 15px; border-left: 4px solid #ffd600; padding-left: 10px;">Галерея та фото актора</h2>
@@ -931,6 +1214,7 @@
         </div>
     </div>
 
+    <!-- Підключення зовнішньої логіки модалки і галереї -->
     <script>
         function switchActorTab(targetId, btn) {
             document.querySelectorAll('.actor-film-table-wrapper').forEach(t => t.style.display = 'none');
@@ -939,6 +1223,6 @@
             btn.classList.add('active');
         }
     </script>
-    <script src="../js/actor-dynamic.js"></script>
+    <script src="../js/actor-gallery.js"></script>
 </body>
 </html>
