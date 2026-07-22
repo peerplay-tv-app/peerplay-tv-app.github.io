@@ -547,7 +547,7 @@
                 document.body.style.overflow = 'hidden';
                 TRAILER_IFRAME.src = "";
 
-                // Акторський склад (ВИПРАВЛЕНО ШЛЯХ ДО АКТОРІВ БЕЗ ДУБЛЮВАННЯ actors/)
+                // Акторський склад (ПОВНІСТЮ ВИПРАВЛЕНО ШЛЯХ БЕЗ ПОДВІЙНОГО actors/)
                 fetch(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${API_KEY}&language=uk-UA`)
                     .then(r => r.json())
                     .then(creditsData => {
@@ -556,7 +556,8 @@
                                 let actorUrl;
                                 if (typeof generatedActorsMap !== 'undefined' && generatedActorsMap[a.id]) {
                                     let rawPath = generatedActorsMap[a.id];
-                                    actorUrl = rawPath.startsWith('actors/') ? `../${rawPath}` : rawPath;
+                                    // Очищаємо "actors/" або "/actors/", оскільки ми вже знаходимося в папці actors/
+                                    actorUrl = rawPath.replace(/^\/?actors\//, '');
                                 } else {
                                     actorUrl = `profile.html?id=${a.id}`;
                                 }
