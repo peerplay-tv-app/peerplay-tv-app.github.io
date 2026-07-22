@@ -126,16 +126,25 @@ async function openInjectedModal(type, id) {
                 : "Невизначено";
         }
 
-        // Актори
+        // Актори (ВИПРАВЛЕНО ШЛЯХ ДО АКТОРІВ Без дублювання actors/)
         if (actorsList) {
             fetch(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${ACTOR_API_KEY}&language=uk-UA`)
                 .then(res => res.json())
                 .then(creditsData => {
                     if (creditsData.cast && creditsData.cast.length > 0) {
+                        const isInsideActorsFolder = window.location.pathname.includes('/actors/') || window.location.pathname.endsWith('/profile.html');
+                        
                         actorsList.innerHTML = creditsData.cast.slice(0, 5).map(actor => {
-                            let actorUrl = `profile.html?id=${actor.id}`;
+                            let actorUrl;
                             if (typeof generatedActorsMap !== 'undefined' && generatedActorsMap[actor.id]) {
-                                actorUrl = generatedActorsMap[actor.id];
+                                let rawPath = generatedActorsMap[actor.id];
+                                if (isInsideActorsFolder) {
+                                    actorUrl = rawPath.replace(/^actors\//, '');
+                                } else {
+                                    actorUrl = rawPath.startsWith('actors/') ? rawPath : `actors/${rawPath}`;
+                                }
+                            } else {
+                                actorUrl = isInsideActorsFolder ? `profile.html?id=${actor.id}` : `actors/profile.html?id=${actor.id}`;
                             }
                             return `<a href="${actorUrl}" style="color: #ffd600; text-decoration: none; font-weight: 600;">${escapeInjHtml(actor.name)}</a>`;
                         }).join(', ');
