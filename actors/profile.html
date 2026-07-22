@@ -547,15 +547,19 @@
                 document.body.style.overflow = 'hidden';
                 TRAILER_IFRAME.src = "";
 
-                // Акторський склад
+                // Акторський склад (ВИПРАВЛЕНО ШЛЯХ ДО АКТОРІВ БЕЗ ДУБЛЮВАННЯ actors/)
                 fetch(`https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${API_KEY}&language=uk-UA`)
                     .then(r => r.json())
                     .then(creditsData => {
                         if (creditsData.cast && creditsData.cast.length > 0) {
                             MODAL_ACTORS_LIST.innerHTML = creditsData.cast.slice(0, 5).map(a => {
-                                let actorUrl = (typeof generatedActorsMap !== 'undefined' && generatedActorsMap[a.id])
-                                    ? `../actors/${generatedActorsMap[a.id]}`
-                                    : `profile.html?id=${a.id}`;
+                                let actorUrl;
+                                if (typeof generatedActorsMap !== 'undefined' && generatedActorsMap[a.id]) {
+                                    let rawPath = generatedActorsMap[a.id];
+                                    actorUrl = rawPath.startsWith('actors/') ? `../${rawPath}` : rawPath;
+                                } else {
+                                    actorUrl = `profile.html?id=${a.id}`;
+                                }
                                 return `<a href="${actorUrl}" style="color: #ffd600; text-decoration: none; font-weight: 600;">${escapeHtml(a.name)}</a>`;
                             }).join(', ');
                         } else {
