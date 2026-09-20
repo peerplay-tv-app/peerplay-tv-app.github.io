@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#12121A">
+
+    <link rel="icon" type="image/jpeg" href="peer_play_icon.jpg">
+    <link rel="apple-touch-icon" href="peer_play_icon.jpg">
+
+    <title>Політика конфіденційності — PeerPlay TV</title>
+    <meta name="description" content="Політика конфіденційності застосунку та сайту PeerPlay TV: які дані ми збираємо, як їх використовуємо та як зв'язатися з розробником.">
+    <meta name="robots" content="noindex, follow">
+
+    <meta property="og:title" content="Політика конфіденційності — PeerPlay TV">
+    <meta property="og:description" content="Політика конфіденційності застосунку та сайту PeerPlay TV.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://peerplay-tv-app.github.io/privacy-policy.html">
+    <meta property="og:site_name" content="PeerPlay TV">
+    <meta property="og:locale" content="uk_UA">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        .legal-section { padding: 60px 0 80px 0; }
+        .legal-wrap { max-width: 860px; margin: 0 auto; }
+        .legal-wrap h1 { font-size: 34px; font-weight: 900; margin-bottom: 10px; }
+        .legal-updated { color: #7e8494; font-size: 14px; margin-bottom: 40px; }
+        .legal-wrap h2 {
+            font-size: 20px; font-weight: 800; color: #ffd600;
+            margin: 40px 0 14px 0; padding-left: 14px; position: relative;
+        }
+        .legal-wrap h2::before {
+            content: ''; position: absolute; left: 0; top: 2px; bottom: 2px;
+            width: 3px; background-color: #ffd600; border-radius: 2px;
+        }
+        .legal-wrap p, .legal-wrap li { color: #b3b7c9; font-size: 15px; line-height: 1.7; }
+        .legal-wrap ul { margin: 10px 0 10px 20px; }
+        .legal-wrap li { margin-bottom: 8px; }
+        .legal-wrap a { color: #ffd600; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+        .legal-wrap a:hover { border-bottom-color: #ffd600; }
+        .legal-box {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-top: 15px;
+        }
+        .contact-box {
+            background-color: rgba(255, 214, 0, 0.05);
+            border: 1px solid rgba(255, 214, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-top: 40px;
+        }
+        .contact-box p { color: #e2e4eb; }
+        .contact-box a { font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
+                <span class="accent-color">Peer</span>Play TV
+            </a>
+            <div class="header-right-side">
+                <a href="index.html" class="auth-trigger-btn" style="text-decoration: none;">
+                    <span class="material-icons">home</span>
+                    <span>На головну</span>
+                </a>
+                <a href="https://github.com/Chief-0107/PeerPlay-TV/releases/download/3.2/app-release3.2.apk" class="btn" style="background: #ffd600; color: #000; padding: 10px 20px; border-radius: 25px; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                    <span class="material-icons">download</span>
+                    <span>Завантажити APK</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="legal-section">
+        <div class="container legal-wrap">
+            <h1>Політика конфіденційності</h1>
+            <p class="legal-updated">Дата останнього оновлення: 20 вересня 2026 р.</p>
+
+            <p>Ця Політика конфіденційності описує, які дані збирає застосунок та сайт <b>PeerPlay TV</b> (далі — «Сервіс»), як вони використовуються та як зв'язатися з нами з приводу конфіденційності. Використовуючи Сервіс, ви погоджуєтесь з умовами, викладеними нижче.</p>
+
+            <h2>1. Які дані ми збираємо</h2>
+            <p>Сервіс збирає мінімальний обсяг даних, необхідний для роботи функцій профілю, обраного та коментарів:</p>
+            <div class="legal-box">
+                <ul>
+                    <li><b>Нікнейм та email</b> — при створенні профілю (використовується Firebase Authentication/Firestore) для захисту унікального імені користувача від підробки.</li>
+                    <li><b>Коментарі та оцінки фільмів</b> — текст відгуку, ім'я користувача та дата публікації, які зберігаються на сервері (Firebase Firestore) та відображаються публічно іншим користувачам.</li>
+                    <li><b>Локальні налаштування пристрою</b> — список обраних фільмів/серіалів, виставлені оцінки, обрані аудіодоріжки та збережені таймкоди перегляду. Ці дані зберігаються <b>локально на вашому пристрої</b> (localStorage / внутрішнє сховище застосунку) і не передаються на наші сервери.</li>
+                    <li><b>Технічні дані</b> — стандартні дані, які браузер чи система Android передають при завантаженні сторінок або APK-файлу (наприклад, тип пристрою), без прив'язки до особи користувача.</li>
+                </ul>
+            </div>
+
+            <h2>2. Чого ми НЕ збираємо</h2>
+            <p>Сервіс не запитує пароль (вхід відбувається лише за нікнеймом та email), не збирає платіжні дані, не відстежує геолокацію та не продає й не передає особисті дані третім особам з рекламною метою.</p>
+
+            <h2>3. Як використовуються дані</h2>
+            <ul>
+                <li>Email використовується виключно для захисту нікнейма від зайняття іншим користувачем — ми не надсилаємо рекламних розсилок.</li>
+                <li>Нікнейм і текст коментаря відображаються публічно під фільмом/серіалом, який ви прокоментували.</li>
+                <li>Дані про обране та оцінки використовуються лише для персоналізації вашого перегляду в межах вашого пристрою.</li>
+            </ul>
+
+            <h2>4. Сторонні сервіси</h2>
+            <p>Для роботи Сервісу використовуються такі сторонні постачальники, кожен з яких має власну політику конфіденційності:</p>
+            <div class="legal-box">
+                <ul>
+                    <li><b>The Movie Database (TMDb)</b> — джерело описів, постерів, трейлерів і метаданих фільмів/серіалів. Сервіс не сертифікований та не підтримується TMDb.</li>
+                    <li><b>Google Firebase</b> (Authentication, Firestore) — зберігання профілів, коментарів та оцінок.</li>
+                    <li><b>Google Fonts</b> — підключення іконок інтерфейсу.</li>
+                    <li><b>YouTube (вбудований плеєр)</b> — показ офіційних трейлерів у картці фільму.</li>
+                </ul>
+            </div>
+
+            <h2>5. Робота застосунку з торрент-потоками</h2>
+            <p>Застосунок PeerPlay TV для Android TV/Android відтворює відео безпосередньо з торрент-мереж у режимі потокового відтворення без збереження копії на диску користувача. Сервіс не є розповсюджувачем контенту та не зберігає файли на власних серверах — весь відеоконтент завантажується напряму з децентралізованої мережі за ініціативою користувача.</p>
+
+            <h2>6. Зберігання та видалення даних</h2>
+            <p>Дані профілю (нікнейм, email) та коментарі зберігаються, доки користувач не звернеться з проханням про їх видалення. Локальні дані (обране, оцінки, налаштування) можна видалити самостійно, очистивши дані застосунку/сайту в налаштуваннях пристрою або браузера.</p>
+
+            <h2>7. Права користувача</h2>
+            <p>Ви маєте право запросити перегляд, виправлення або повне видалення своїх даних (профілю, коментарів) з наших серверів, звернувшись за контактом нижче.</p>
+
+            <h2>8. Зміни до цієї політики</h2>
+            <p>Ми можемо періодично оновлювати цю Політику конфіденційності. Актуальна версія завжди доступна за цією ж адресою, дата оновлення вказана на початку сторінки.</p>
+
+            <div class="contact-box">
+                <p><span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: #ffd600;">mail</span><b>Контакти:</b> з питань конфіденційності та видалення даних пишіть на <a href="mailto:0979633180ivan@gmail.com">0979633180ivan@gmail.com</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 PeerPlay TV. Усі права захищені. Матеріал надано для ознайомлення через відкрите API TMDb.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
